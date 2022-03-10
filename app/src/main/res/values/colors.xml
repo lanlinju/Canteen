@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#77A7EF</color>
+    <color name="colorPrimaryDark">#498AEA</color>
+    <color name="colorSecondary">#FEEAA5</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorButtonSaveImages">#81C784</color>
+    <color name="colorButtonEditImage">#FFB74D</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorAccent">#FDBE3B</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorSearchIcon">#DBDBDB</color>
+    <color name="colorTextHint">#7B7B7B</color>
+    <color name="colorIcons">#A4A4A4</color>
+    <color name="color2">#FDBE3B</color>
+    <color name="color3">#FF4842</color>
+    <color name="color4">#3A52FC</color>
+    <color name="color5">#000000</color>
+    <color name="colorDelete">#FF4842</color>
+    <color name="colorSearchBackground">#333333</color>
+
+</resources>
