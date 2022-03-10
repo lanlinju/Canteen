@@ -21,4 +21,16 @@
     <color name="colorDelete">#FF4842</color>
     <color name="colorSearchBackground">#333333</color>
 
+
+    <color name="primary">#1a237e</color>
+    <color name="primary_dark">#283593</color>
+    <color name="primary_text">#FF000000</color>
+    <color name="secondary_text">#bdbdbd</color>
+    <color name="input_background">#e0e0e0</color>
+    <color name="icon_background">#bdbdbd</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="error">#e00032</color>
+    <color name="received_message_backgroud">#283593</color>
+
 </resources>
