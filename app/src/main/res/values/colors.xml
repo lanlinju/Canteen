@@ -14,23 +14,35 @@
     <color name="colorSearchIcon">#DBDBDB</color>
     <color name="colorTextHint">#7B7B7B</color>
     <color name="colorIcons">#A4A4A4</color>
+    <color name="colorDefaultNoteColor">#333333</color>
     <color name="color2">#FDBE3B</color>
     <color name="color3">#FF4842</color>
     <color name="color4">#3A52FC</color>
     <color name="color5">#000000</color>
     <color name="colorDelete">#FF4842</color>
     <color name="colorSearchBackground">#333333</color>
-
-
-    <color name="primary">#1a237e</color>
-    <color name="primary_dark">#283593</color>
+    <color name="colorTextIcons">#FFFFFF</color>
+    <color name="background_icon">#bdbdbd</color>
     <color name="primary_text">#FF000000</color>
     <color name="secondary_text">#bdbdbd</color>
     <color name="input_background">#e0e0e0</color>
     <color name="icon_background">#bdbdbd</color>
+    <color name="background_dialog">#FCFCF4</color>
+    <color name="background_dialog1">#FDFBF2</color>
+    <color name="primary">#1a237e</color>
+
+    //Material Design 3
+    <color name="bc_primary_color">#E8E5D0</color>
+    <color name="background_bottom_navigation">#F2F4E7</color>
+    <color name="background_on_bottom_navigation">#E5E3BF</color>
+    <color name="color_item">#FCFCF4</color>
+    <color name="color_fab">#ADEFD5</color>
+    //page
+    <color name="background">#F6F2EE</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
     <color name="error">#e00032</color>
-    <color name="received_message_backgroud">#283593</color>
+
 
 </resources>

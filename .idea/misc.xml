@@ -3,11 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable-v24/background_dialog.xml" value="0.2755" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable-v24/background_input.xml" value="0.2455" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_dialog.xml" value="0.2535" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_icon.xml" value="0.3325" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_image.xml" value="0.2755" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_input.xml" value="0.2495" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_added.xml" value="0.164" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_back.xml" value="0.164" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_logout.xml" value="0.2755" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/activity_main.xml" value="0.3260416666666667" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/activity_sign_up.xml" value="0.3260416666666667" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/layout/layout_alert_dialog.xml" value="0.3260416666666667" />
       </map>
     </option>
   </component>

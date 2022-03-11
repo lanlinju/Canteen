@@ -35,9 +35,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:text="@string/login_to_continue"
+                android:text="@string/cateen_profile"
                 android:textColor="@color/secondary_text"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_10ssp"
                 android:textStyle="bold" />
 
             <EditText
@@ -104,7 +104,6 @@
                 android:textColor="@color/primary"
                 android:textSize="@dimen/_13ssp"
                 android:textStyle="bold" />
-
 
         </LinearLayout>
     </ScrollView>
