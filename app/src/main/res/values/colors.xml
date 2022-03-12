@@ -32,17 +32,32 @@
     <color name="primary">#1a237e</color>
 
     //Material Design 3
-    <color name="bc_primary_color">#E8E5D0</color>
-    <color name="background_bottom_navigation">#F2F4E7</color>
-    <color name="background_on_bottom_navigation">#E5E3BF</color>
-    <color name="color_item">#FCFCF4</color>
-    <color name="color_fab">#ADEFD5</color>
+    <color name="bc_primary_color">#E9E6D1</color>
+    <color name="background_bottom_navigation">#FFFCF3</color>
+    <color name="background_on_bottom_navigation">#E6E4C0</color>
+    <color name="color_item">#FFFCF3</color>
+    <color name="color_fab">#AEF0D6</color>
+    <color name="background_button">#F4F0E8</color>
+
+
+
     //page
-    <color name="background">#F6F2EE</color>
+    <color name="backgroundPage">#F6F2EE</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
     <color name="error">#e00032</color>
+
+    //smooth bottom bar
+    <color name="bottom_bar_indicator_color">#D4F5FA</color>
+    <color name="bottom_bar_icon_tint">#CFD0E2</color>
+    <color name="bottom_bar_icon_tint_active">#35B7CF</color>
+    <color name="bottom_bar_icon_text_color">#35B7CF</color>
+    <color name="background">#F8FCFD</color>
+    <color name="primary_label">#212121</color>
+    <color name="secondary_label">#757575</color>
+    <color name="search_background">#F3F6FB</color>
+    <color name="favorite_background">#FF7173</color>
 
 
 </resources>

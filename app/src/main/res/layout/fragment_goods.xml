@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.GoodsFragment">
+
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/_8sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_weight="1"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="@string/app_name"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="@dimen/_14ssp" />
+
+
+
+        <ImageView
+            android:id="@+id/imageSearch"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_search"
+            app:tint="@color/colorTextIcons" />
+
+        <ImageView
+            android:id="@+id/imageSignOut"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_logout"
+            app:tint="@color/colorTextIcons" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goods"
+        android:textSize="@dimen/_20ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

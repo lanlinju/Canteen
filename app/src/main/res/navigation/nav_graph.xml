@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.canteen.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_goodsFragment"
+            app:destination="@id/goodsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.canteen.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/goodsFragment"
+        android:name="com.example.canteen.fragments.GoodsFragment"
+        android:label="fragment_goods"
+        tools:layout="@layout/fragment_goods" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.canteen.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.example.canteen.fragments.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.canteen.fragments.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.canteen.fragments.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+</navigation>

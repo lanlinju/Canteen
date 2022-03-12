@@ -43,14 +43,15 @@ class SignInActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext, SignUpActivity::class.java))
         }
         binding.buttonSignIn.setOnClickListener {
-            if (isValidSignInDetails()) {
-//                val intent = Intent(applicationContext, MainActivity::class.java)
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-//                startActivity(intent)
-                // toDo()
-                signIn()
+//            if (isValidSignInDetails()) {
+            preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+            // toDo()
+            signIn()
 
-            }
+//            }
         }
     }
 
