@@ -14,4 +14,7 @@ interface UserApiService {
 
     @POST("register")
     fun signUp(@Body user: User): Call<BaseResponse<String>>
+
+    @GET("ltest")
+    fun test(@Query("id")  id:String): Call<BaseResponse<User>>
 }

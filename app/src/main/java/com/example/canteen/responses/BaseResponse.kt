@@ -1,6 +1,6 @@
 package com.example.canteen.responses
 
-class BaseResponse<T> {
+class BaseResponse<T>(private val statusCode: StatusCode) {
     //状态码
     var code: Int = -1
 
@@ -14,5 +14,9 @@ class BaseResponse<T> {
         return "BaseResponse(code=$code, msg='$msg', data=$data)"
     }
 
+    init {
+        this.code = statusCode.code
+        this.msg = statusCode.msg
+    }
 
 }

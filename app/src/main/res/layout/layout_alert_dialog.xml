@@ -33,8 +33,7 @@
         app:layout_constraintBottom_toBottomOf="@id/imageDeleteNote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageDeleteNote"
-        app:layout_constraintTop_toTopOf="@id/imageDeleteNote"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintTop_toTopOf="@id/imageDeleteNote" />
 
     <TextView
         android:id="@+id/textMessage"
@@ -44,6 +43,8 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:includeFontPadding="false"
+        android:maxLines="3"
+        android:ellipsize="end"
         android:paddingStart="@dimen/_8sdp"
         android:paddingEnd="@dimen/_8sdp"
         android:textColor="@color/primary_text"

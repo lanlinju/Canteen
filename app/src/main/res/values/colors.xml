@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="colorPrimary">#77A7EF</color>
     <color name="colorPrimaryDark">#498AEA</color>
     <color name="colorSecondary">#FEEAA5</color>
@@ -22,7 +21,7 @@
     <color name="colorDelete">#FF4842</color>
     <color name="colorSearchBackground">#333333</color>
     <color name="colorTextIcons">#FFFFFF</color>
-    <color name="background_icon">#bdbdbd</color>
+    <color name="colorBackgroundIcon">#bdbdbd</color>
     <color name="primary_text">#FF000000</color>
     <color name="secondary_text">#bdbdbd</color>
     <color name="input_background">#e0e0e0</color>
@@ -38,8 +37,6 @@
     <color name="color_item">#FFFCF3</color>
     <color name="color_fab">#AEF0D6</color>
     <color name="background_button">#F4F0E8</color>
-
-
 
     //page
     <color name="backgroundPage">#F6F2EE</color>
@@ -58,6 +55,6 @@
     <color name="secondary_label">#757575</color>
     <color name="search_background">#F3F6FB</color>
     <color name="favorite_background">#FF7173</color>
-
+    <color name="colorGreen">#FF32CD32</color>
 
 </resources>

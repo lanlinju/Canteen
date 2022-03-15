@@ -15,6 +15,7 @@ import com.example.canteen.databinding.ActivitySignInBinding
 import com.example.canteen.utilities.Constants
 import com.example.canteen.utilities.PreferenceManager
 import com.example.canteen.utilities.displayToast
+import com.example.canteen.utilities.showDialog
 import com.example.canteen.viewmodels.SignInViewModel
 
 class SignInActivity : AppCompatActivity() {
@@ -32,7 +33,6 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
         signInViewModel = ViewModelProvider(this)[SignInViewModel::class.java]
 
         setListeners()
@@ -42,16 +42,14 @@ class SignInActivity : AppCompatActivity() {
         binding.textCreateNewAccount.setOnClickListener {
             startActivity(Intent(applicationContext, SignUpActivity::class.java))
         }
-        binding.buttonSignIn.setOnClickListener {
-//            if (isValidSignInDetails()) {
+        // ------- bug --------- //
+        binding.welcomeBack.setOnClickListener() {
             preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
-            // toDo()
-            signIn()
-
-//            }
+        }
+        binding.buttonSignIn.setOnClickListener {
+            if (isValidSignInDetails()) {
+                signIn()
+            }
         }
     }
 
@@ -66,8 +64,19 @@ class SignInActivity : AppCompatActivity() {
         signInViewModel.signIn(
             binding.inputEmail.text.toString(),
             binding.inputPassword.text.toString()
-        ).observe(this) { user ->
-            if (user != null) {
+        ).observe(this) { baseResponse ->
+            loading(false)
+            if (baseResponse.code == 404) {
+                showDialog(baseResponse.msg) {
+                }
+                return@observe
+            }
+            if (baseResponse.code == -1) {
+                displayToast(baseResponse.msg)
+                return@observe
+            }
+            if (baseResponse.data != null) {
+                val user = baseResponse.data!!
                 preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
                 preferenceManager.putString(Constants.KEY_USER_ID, user.id)
                 preferenceManager.putString(Constants.KEY_NAME, user.name)
@@ -77,6 +86,7 @@ class SignInActivity : AppCompatActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
             }
+
         }
     }
 

@@ -23,6 +23,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/welcomeBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_40sdp"
@@ -35,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:text="@string/cateen_profile"
+                android:text="@string/canteen_profile"
                 android:textColor="@color/secondary_text"
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="bold" />

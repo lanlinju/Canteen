@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_homeFragment_to_goodsFragment"
             app:destination="@id/goodsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
@@ -28,7 +31,11 @@
         android:id="@+id/goodsFragment"
         android:name="com.example.canteen.fragments.GoodsFragment"
         android:label="fragment_goods"
-        tools:layout="@layout/fragment_goods" />
+        tools:layout="@layout/fragment_goods" >
+        <action
+            android:id="@+id/action_goodsFragment_to_goodsDetailsFragment"
+            app:destination="@id/goodsDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.canteen.fragments.ProfileFragment"
@@ -49,4 +56,13 @@
         android:name="com.example.canteen.fragments.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" />
+    <fragment
+        android:id="@+id/goodsDetailsFragment"
+        android:name="com.example.canteen.fragments.GoodsDetailsFragment"
+        android:label="fragment_goods_details"
+        tools:layout="@layout/fragment_goods_details" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.canteen.fragments.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>
