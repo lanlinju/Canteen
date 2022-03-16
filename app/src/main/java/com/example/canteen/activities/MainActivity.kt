@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(binding.navigationView, navController)
 
-        binding.navigationView.setItemBackgroundResource(R.color.mtrl_navigation_item_background_color)
+        //binding.navigationView.setItemBackgroundResource(R.color.mtrl_navigation_item_background_color)
 
         setListeners()
         setupSmoothBottomMenu()
@@ -60,21 +60,6 @@ class MainActivity : AppCompatActivity() {
             val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
             binding.navigationView.getHeaderView(0).findViewById<ImageView>(R.id.imageProfile).setImageBitmap(bitmap)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        showLogD("MainActivity:onResume:2222")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        showLogD("MainActivity:onStop:3333")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        showLogD("MainActivity:onDestroy:4444")
     }
 
 }

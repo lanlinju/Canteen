@@ -43,7 +43,7 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:includeFontPadding="false"
-        android:maxLines="3"
+        android:maxLines="4"
         android:ellipsize="end"
         android:paddingStart="@dimen/_8sdp"
         android:paddingEnd="@dimen/_8sdp"

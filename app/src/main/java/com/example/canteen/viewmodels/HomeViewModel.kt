@@ -7,12 +7,12 @@ import com.example.canteen.models.Category
 import com.example.canteen.responses.BaseResponse
 import com.example.canteen.respositories.CategoryRepository
 
-class HomeViewModel : ViewModel(){
+class HomeViewModel : ViewModel() {
+
     private val categoryRepository = CategoryRepository()
-    private var mCategoryLiveData = MutableLiveData<BaseResponse<List<Category>>>()
     val categoryLiveData: LiveData<BaseResponse<List<Category>>> get() = getAllCategory()
 
-    private fun getAllCategory():LiveData<BaseResponse<List<Category>>>{
+    private fun getAllCategory(): LiveData<BaseResponse<List<Category>>> {
         return categoryRepository.getAllCategory()
     }
 

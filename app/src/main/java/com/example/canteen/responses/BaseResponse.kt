@@ -19,4 +19,33 @@ class BaseResponse<T>(private val statusCode: StatusCode) {
         this.msg = statusCode.msg
     }
 
+    fun setStatusCode(statusCode: StatusCode) {
+        this.code = statusCode.code
+        this.msg = statusCode.msg
+    }
+
+    companion object {
+        fun <T> Success() = BaseResponse<T>(StatusCode.Success)
+
+        fun <T> Success(data: T): BaseResponse<T> {
+            val retMsg = BaseResponse<T>(StatusCode.Success)
+            retMsg.data = data
+            return retMsg
+        }
+
+        fun Fail() = BaseResponse<String>(StatusCode.Fail)
+
+        fun Fail(message: String): BaseResponse<String> {
+            val retMsg = BaseResponse<String>(StatusCode.Fail)
+            retMsg.msg = message
+            return retMsg
+        }
+        fun NetworkError(message: String):BaseResponse<String>{
+            val retMsg = BaseResponse<String>(StatusCode.NetWorkError)
+            retMsg.msg = message
+            return retMsg
+        }
+    }
+
+
 }

@@ -20,6 +20,7 @@ import com.example.canteen.databinding.FragmentHomeBinding
 import com.example.canteen.utilities.Constants
 import com.example.canteen.utilities.PreferenceManager
 import com.example.canteen.utilities.showDialog
+import com.example.canteen.utilities.showLogD
 import com.example.canteen.viewmodels.HomeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import com.makeramen.roundedimageview.RoundedImageView
@@ -30,20 +31,27 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var preferenceManager: PreferenceManager
     private lateinit var homeViewModel: HomeViewModel
+    private var isLoaded = false //避免跳转到其他fragment之后返回 会重复加载数据
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        showLogD("HomeFragment:onCreateView")
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        showLogD("HomeFragment:onCreateView")
         preferenceManager = PreferenceManager(requireContext())
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-        loadUserDetails()
+
+        if (!isLoaded) {
+            loadUserDetails()
+        }
+
         init()
         setListeners()
     }
@@ -65,7 +73,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    fun init() {
+    private fun init() {
         homeViewModel.categoryLiveData.observe(viewLifecycleOwner) { baseResponse ->
             if (baseResponse.code == 404 || baseResponse.code == -1) {
                 requireActivity().showDialog(baseResponse.msg) {
@@ -79,19 +87,18 @@ class HomeFragment : Fragment() {
                 viewPager.adapter = HomeViewPagerAdapter(baseResponse.data!!, this)
 
                 // Set the icon and text for each tab
-                TabLayoutMediator(tabLayout, viewPager) { tab, position->
+                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     tab.text = baseResponse.data!![position].cname
                 }.attach()
-
             }
+        }
     }
-}
 
-private fun loadUserDetails() {
-    preferenceManager.getString(Constants.KEY_IMAGE)?.let {
-        val bytes = Base64.decode(it, Base64.DEFAULT)
-        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-        binding.imageProfile.setImageBitmap(bitmap)
+    private fun loadUserDetails() {
+        preferenceManager.getString(Constants.KEY_IMAGE)?.let {
+            val bytes = Base64.decode(it, Base64.DEFAULT)
+            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+            binding.imageProfile.setImageBitmap(bitmap)
+        }
     }
-}
 }

@@ -79,6 +79,7 @@ class SignInActivity : AppCompatActivity() {
                 val user = baseResponse.data!!
                 preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
                 preferenceManager.putString(Constants.KEY_USER_ID, user.id)
+                preferenceManager.putString(Constants.KEY_EMAIL, user.email)
                 preferenceManager.putString(Constants.KEY_NAME, user.name)
                 preferenceManager.putString(Constants.KEY_IMAGE, user.image)
                 preferenceManager.putString(Constants.KEY_ROSE_NAME, user.roleName)

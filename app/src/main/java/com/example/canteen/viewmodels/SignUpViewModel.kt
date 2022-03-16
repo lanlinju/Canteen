@@ -8,6 +8,7 @@ import com.example.canteen.respositories.SignUpRepository
 
 
 class SignUpViewModel: ViewModel() {
+
     private var signUpRepository:SignUpRepository = SignUpRepository()
 
     fun signUp(user: User): LiveData<BaseResponse<String>> {

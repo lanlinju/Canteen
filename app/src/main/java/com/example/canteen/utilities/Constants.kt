@@ -11,6 +11,8 @@ class Constants {
         const val KEY_USER_ID = "userId"
         const val KEY_ROSE_NAME = "roseName"
 
+        const val NETWORK_DOMAIN = "http://192.168.1.5:8081/"
+
         const val ROSE_SYS = "超级管理员"
         const val ROSE_COMMON = "普通员工"
         const val KEY_USER = "user"

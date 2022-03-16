@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="goods"
+            type="com.example.canteen.models.Goods" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="@dimen/_2sdp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/_4sdp"
+        app:cardElevation="@dimen/_1sdp">
+
+        <!--        android:foreground="?android:attr/selectableItemBackground"-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/_6sdp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imageGoods"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="H, 2:1.6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius="@dimen/_4sdp"
+                app:imageUrl="@{goods.thumbnail}" />
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:text="@{goods.name}"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/secondary_label"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/imageGoods" />
+
+            <TextView
+                android:id="@+id/textPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:text="@{goods.price}"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/textName"
+                app:layout_constraintStart_toStartOf="@id/textName" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:id="@+id/imageMore"
+                android:src="@drawable/ic_more"
+                app:layout_constraintBottom_toBottomOf="@id/textPrice"
+                app:layout_constraintTop_toTopOf="@id/textPrice"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
