@@ -27,6 +27,11 @@ android {
 
     buildFeatures {
         dataBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
     }
 
     compileOptions {
@@ -35,6 +40,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        useIR = true
     }
 }
 
@@ -81,4 +87,18 @@ dependencies {
 
     // Smooth Bottom Bar
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.8'
+
+    // Compose
+    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation "androidx.compose.runtime:runtime:$compose_version"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "com.google.android.material:compose-theme-adapter:$compose_version"
+
+    // M3
+    implementation "androidx.compose.material3:material3:1.0.0-alpha04"
 }

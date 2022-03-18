@@ -14,6 +14,7 @@ object BlurUtils {
      * 图片缩放比例
      */
     private const val SCALE_DEGREE = 0.2f
+//    private const val SCALE_DEGREE = 0.5f
 
     /**
      * 最大模糊度（在0.0到25.0之间）

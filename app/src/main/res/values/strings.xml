@@ -34,4 +34,8 @@
     <string name="nick_name">Nick name</string>
     <string name="verified">Verified</string>
     <string name="user">User</string>
+    <string name="title">标题</string>
+    <string name="read_more">更多</string>
+    <string name="share">分享</string>
+    <string name="add_cart">加入购物车</string>
 </resources>

@@ -1,22 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.GoodsDetailsFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textGoodsDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="GoodsDetails"
-        android:textSize="@dimen/_20ssp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="goods"
+            type="com.example.canteen.models.Goods" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.GoodsDetailsFragment">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            imageUrlBlur="@{goods.thumbnail}"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageViewBackground"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_160sdp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+<!--                <View-->
+<!--                    android:id="@+id/viewFadingEdge"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_40sdp"-->
+<!--                    android:background="@drawable/background_fading_edge"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@id/imageViewBackground" />-->
+
+
+                <ImageView
+                    android:id="@+id/imageBack"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/background_back_button"
+                    android:contentDescription="@string/app_name"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/colorTextIcons" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/imageGoods"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_130sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{goods.thumbnail}"
+                    app:layout_constraintBottom_toBottomOf="@id/imageViewBackground"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageViewBackground"
+                    app:riv_corner_radius="@dimen/_8sdp" />
+
+                <TextView
+                    android:id="@+id/textName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{goods.name}"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imageGoods"
+                    app:layout_constraintTop_toTopOf="@id/imageGoods" />
+
+                <TextView
+                    android:id="@+id/textPlace"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"来源地: " + goods.place}'
+                    android:textColor="@color/colorTextOther"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@id/textName"
+                    app:layout_constraintStart_toStartOf="@id/textName"
+                    app:layout_constraintTop_toBottomOf="@id/textName" />
+
+                <TextView
+                    android:id="@+id/textNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"数量: " + goods.number}'
+                    android:textColor="@android:color/holo_green_light"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@id/textName"
+                    app:layout_constraintStart_toStartOf="@id/textName"
+                    app:layout_constraintTop_toBottomOf="@id/textPlace" />
+
+                <TextView
+                    android:id="@+id/textStarted"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"日期: " +  goods.date}'
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@id/textName"
+                    app:layout_constraintStart_toStartOf="@id/textName"
+                    app:layout_constraintTop_toBottomOf="@id/textNumber" />
+
+                <TextView
+                    android:id="@+id/textDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:maxLines="4"
+                    android:text="@{goods.content}"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintTop_toBottomOf="@id/imageGoods" />
+
+                <TextView
+                    android:id="@+id/textReadMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="@dimen/_2sdp"
+                    android:text="@string/read_more"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="@id/textDescription"
+                    app:layout_constraintTop_toBottomOf="@id/textDescription" />
+
+
+                <View
+                    android:id="@+id/viewDivider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@color/colorSecondaryText"
+
+                    app:layout_constraintTop_toBottomOf="@id/textReadMore" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonShare"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:backgroundTint="#0097FB"
+                    android:includeFontPadding="false"
+                    android:text="@string/share"
+                    android:textSize="@dimen/_12ssp"
+                    app:cornerRadius="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/buttonAddCarts"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider2" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonAddCarts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:backgroundTint="@color/colorTextOther"
+                    android:includeFontPadding="false"
+                    android:text="@string/add_cart"
+                    android:textColor="#212121"
+                    android:textSize="@dimen/_12ssp"
+                    app:cornerRadius="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/buttonShare"
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

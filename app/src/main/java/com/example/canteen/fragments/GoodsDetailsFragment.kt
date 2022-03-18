@@ -1,50 +1,60 @@
 package com.example.canteen.fragments
 
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.navigation.fragment.findNavController
+import androidx.core.view.WindowCompat
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import com.example.canteen.R
 import com.example.canteen.activities.MainActivity
+import com.example.canteen.databinding.FragmentGoodsDetailsBinding
+import com.example.canteen.models.Goods
 import com.example.canteen.utilities.notShow
 import com.example.canteen.utilities.show
-import com.example.canteen.utilities.showLogD
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.*
 
 
 class GoodsDetailsFragment : Fragment() {
+
+    private lateinit var binding: FragmentGoodsDetailsBinding
+    private lateinit var goodsDetails: Goods
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        showLogD("GoodsDetails:onCreateView:111")
         (requireActivity() as MainActivity).binding.smoothBottomBar.notShow()
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_goods_details, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_goods_details, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        requireActivity().findViewById<TextView>(R.id.textGoodsDetails).setOnClickListener{
-            findNavController().navigate(R.id.homeFragment)
+        goodsDetails = arguments?.getParcelable<Goods>("KEY_GOODS")!!
+        requireActivity().apply {
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+            //设置专栏栏和导航栏的底色，透明
+            window.statusBarColor = Color.TRANSPARENT
         }
-    }
-    override fun onResume() {
-        super.onResume()
-        showLogD("GoodsDetails:onResume:2222")
-    }
 
-    override fun onStop() {
-        super.onStop()
-        showLogD("GoodsDetails:onStop:3333")
+        binding.goods = goodsDetails
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        (requireActivity() as MainActivity).binding.smoothBottomBar.show()
-        showLogD("GoodsDetails:onDestroy:4444")
+        (requireActivity() as MainActivity).apply {
+            WindowCompat.setDecorFitsSystemWindows(window, true)
+            //设置专栏栏和导航栏的底色，透明
+            window.statusBarColor = Color.parseColor("#77A7EF")
+            binding.smoothBottomBar.show()
+        }
     }
 }

@@ -29,7 +29,7 @@
     <color name="background_dialog">#FCFCF4</color>
     <color name="background_dialog1">#FDFBF2</color>
     <color name="primary">#1a237e</color>
-
+    <color name="fade_end">#141A31</color>
     //Material Design 3
     <color name="bc_primary_color">#E9E6D1</color>
     <color name="background_bottom_navigation">#FFFCF3</color>
@@ -56,5 +56,7 @@
     <color name="search_background">#F3F6FB</color>
     <color name="favorite_background">#FF7173</color>
     <color name="colorGreen">#FF32CD32</color>
+
+    <color name="colorTextOther">#FAD303</color>
 
 </resources>

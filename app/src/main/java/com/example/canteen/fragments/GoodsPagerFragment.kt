@@ -4,23 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.GridLayoutAnimationController
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.canteen.R
 import com.example.canteen.adapters.GoodsAdapter
 import com.example.canteen.databinding.FragmentGoodsPagerBinding
+import com.example.canteen.listeners.GoodsListener
 import com.example.canteen.models.Category
 import com.example.canteen.models.Goods
 import com.example.canteen.utilities.showDialog
 import com.example.canteen.utilities.showLogD
-import com.example.canteen.utilities.showToast
 import com.example.canteen.viewmodels.GoodsViewModel
 
 
-class GoodsPagerFragment(private val category: Category) : Fragment() {
+class GoodsPagerFragment(private val category: Category) : Fragment(), GoodsListener{
 
     private lateinit var binding: FragmentGoodsPagerBinding
     private lateinit var goodsViewModel: GoodsViewModel
@@ -44,10 +45,10 @@ class GoodsPagerFragment(private val category: Category) : Fragment() {
     private fun doInitialization() {
        // binding.goodsRecycleView.setHasFixedSize(true)
         goodsViewModel = ViewModelProvider(this)[GoodsViewModel::class.java]
-        goodsAdapter = GoodsAdapter(goodsList)
+        goodsAdapter = GoodsAdapter(goodsList,this)
         binding.goodsRecycleView.apply {
             adapter = goodsAdapter
-            layoutManager = GridLayoutManager(requireContext(),2)
+            layoutManager =StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
         }
         if (!isLoaded) {
             getGoodsData()
@@ -68,6 +69,14 @@ class GoodsPagerFragment(private val category: Category) : Fragment() {
                     goodsAdapter.notifyItemRangeInserted(oldCount, goodsList.size)
                 }
             }
+    }
+
+    override fun onGoodsClicked(goods: Goods) {
+        Bundle().apply {
+            putParcelable("KEY_GOODS", goods)
+            findNavController().navigate(R.id.goodsDetailsFragment,this)
+        }
+
     }
 
     override fun onStop() {

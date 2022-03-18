@@ -6,11 +6,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.canteen.R
 import com.example.canteen.databinding.ItemContainerGoodsBinding
+import com.example.canteen.listeners.GoodsListener
 import com.example.canteen.models.Goods
 import com.example.canteen.utilities.showLog
 import com.example.canteen.utilities.showToast
 
-class GoodsAdapter(private val goodsList: List<Goods>) :
+class GoodsAdapter(
+    private val goodsList: List<Goods>,
+    private val goodsListener: GoodsListener
+) :
     RecyclerView.Adapter<GoodsAdapter.GoodsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoodsViewHolder {
@@ -36,6 +40,7 @@ class GoodsAdapter(private val goodsList: List<Goods>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindGoods(goods: Goods) {
             binding.goods = goods
+            binding.imageGoods.setOnClickListener{goodsListener.onGoodsClicked(goods)}
         }
     }
 

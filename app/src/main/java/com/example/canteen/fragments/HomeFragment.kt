@@ -17,6 +17,8 @@ import com.example.canteen.activities.MainActivity
 import com.example.canteen.activities.SignInActivity
 import com.example.canteen.adapters.HomeViewPagerAdapter
 import com.example.canteen.databinding.FragmentHomeBinding
+import com.example.canteen.models.Category
+import com.example.canteen.responses.BaseResponse
 import com.example.canteen.utilities.Constants
 import com.example.canteen.utilities.PreferenceManager
 import com.example.canteen.utilities.showDialog
@@ -31,7 +33,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var preferenceManager: PreferenceManager
     private lateinit var homeViewModel: HomeViewModel
-    private var isLoaded = false //避免跳转到其他fragment之后返回 会重复加载数据
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,12 +49,15 @@ class HomeFragment : Fragment() {
         showLogD("HomeFragment:onCreateView")
         preferenceManager = PreferenceManager(requireContext())
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        loadUserDetails()
+        if (!homeViewModel.isLoaded) {
+            loadCategoryData()
+        } else {
+            homeViewModel.categoryList.let {
+                it?.let { it1 -> setupTabWithViewPager2(it1) }
+            }
 
-        if (!isLoaded) {
-            loadUserDetails()
         }
-
-        init()
         setListeners()
     }
 
@@ -73,25 +78,28 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun init() {
-        homeViewModel.categoryLiveData.observe(viewLifecycleOwner) { baseResponse ->
+    private fun loadCategoryData() {
+        homeViewModel.getAllCategory().observe(viewLifecycleOwner) { baseResponse ->
+            homeViewModel.isLoaded = true
             if (baseResponse.code == 404 || baseResponse.code == -1) {
                 requireActivity().showDialog(baseResponse.msg) {
                 }
                 return@observe
             }
             if (baseResponse.data != null) {
-                val tabLayout = binding.tabLayout
-                val viewPager = binding.viewPager2
-
-                viewPager.adapter = HomeViewPagerAdapter(baseResponse.data!!, this)
-
-                // Set the icon and text for each tab
-                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-                    tab.text = baseResponse.data!![position].cname
-                }.attach()
+                setupTabWithViewPager2(baseResponse.data!!)
             }
         }
+    }
+
+    fun setupTabWithViewPager2(listCategory: List<Category>) {
+        homeViewModel.categoryList = listCategory
+        val tabLayout = binding.tabLayout
+        val viewPager = binding.viewPager2
+        viewPager.adapter = HomeViewPagerAdapter(listCategory, this)
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = listCategory[position].cname
+        }.attach()
     }
 
     private fun loadUserDetails() {

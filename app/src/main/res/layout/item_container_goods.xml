@@ -15,20 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
-        android:layout_marginEnd="@dimen/_2sdp"
         android:layout_marginTop="@dimen/_4sdp"
-        android:background="@color/colorWhite"
+        android:layout_marginEnd="@dimen/_2sdp"
         android:layout_marginBottom="@dimen/_2sdp"
-        android:clickable="true"
-        android:focusable="true"
+        android:background="@color/colorWhite"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/_4sdp"
         app:cardElevation="@dimen/_1sdp">
 
-        <!--        android:foreground="?android:attr/selectableItemBackground"-->
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingBottom="@dimen/_6sdp">
 
             <com.makeramen.roundedimageview.RoundedImageView
@@ -36,20 +33,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
+                app:imageUrl="@{goods.thumbnail}"
                 app:layout_constraintDimensionRatio="H, 2:1.6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:riv_corner_radius="@dimen/_4sdp"
-                app:imageUrl="@{goods.thumbnail}" />
+                app:riv_corner_radius="@dimen/_4sdp" />
 
             <TextView
                 android:id="@+id/textName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:text="@{goods.name}"
-                android:maxLines="2"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{goods.name}"
                 android:textColor="@color/secondary_label"
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="bold"
@@ -64,18 +63,18 @@
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/textName"
-                app:layout_constraintStart_toStartOf="@id/textName" />
+                app:layout_constraintStart_toStartOf="@id/textName"
+                app:layout_constraintTop_toBottomOf="@id/textName" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageMore"
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_4sdp"
-                android:id="@+id/imageMore"
                 android:src="@drawable/ic_more"
                 app:layout_constraintBottom_toBottomOf="@id/textPrice"
-                app:layout_constraintTop_toTopOf="@id/textPrice"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textPrice" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

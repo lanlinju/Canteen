@@ -26,7 +26,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
+            android:clipChildren="true"
             android:orientation="vertical"
+            android:overScrollMode="never"
             android:paddingStart="@dimen/_4sdp"
             android:paddingTop="@dimen/_2sdp"
             android:paddingEnd="@dimen/_6sdp"
@@ -51,6 +53,7 @@
             android:indeterminateTint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:visibleOrGone="@{isLoadingMore}" />
 
