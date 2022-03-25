@@ -16,13 +16,22 @@
 
 package com.example.canteen.fragments
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.unit.dp
+import com.example.canteen.viewmodels.CartViewModel
 
 @Composable
-fun ProfileDetailDescription() {
-    Surface {
-        Text("Hello Compose")
+fun ProfileDetailDescription(cartViewModel: CartViewModel) {
+    val cartList by cartViewModel.cartListLiveData.observeAsState()
+    cartList?.let {
+        Surface(color = MaterialTheme.colors.surface, elevation = 1.dp) {
+            Text(it.toString())
+        }
     }
+
 }

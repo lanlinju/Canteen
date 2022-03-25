@@ -20,11 +20,13 @@ class ProfileFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentProfileBinding>(
             inflater, R.layout.fragment_profile, container, false
         ).apply {
+
             composeView.setContent {
                 MaterialTheme {
-                    ProfileDetailDescription()
+                   // ProfileDetailDescription()
                 }
             }
+
         }
         return binding.root
     }

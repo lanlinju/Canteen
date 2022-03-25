@@ -9,12 +9,12 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface UserApiService {
-    @GET("login")
+    @GET("user/login")
     fun signIn(@Query("email") email: String, @Query("password") password: String): Call<BaseResponse<User>>
 
-    @POST("register")
+    @POST("user/register")
     fun signUp(@Body user: User): Call<BaseResponse<String>>
 
-    @GET("ltest")
+    @GET("user/ltest")
     fun test(@Query("id")  id:String): Call<BaseResponse<User>>
 }

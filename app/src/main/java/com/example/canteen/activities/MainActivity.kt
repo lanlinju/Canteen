@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.widget.ImageView
 import android.widget.PopupMenu
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -55,10 +56,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadUserDetails() {
-        getPreferenceManager().getString(Constants.KEY_IMAGE)?.let {
-            val bytes = Base64.decode(it, Base64.DEFAULT)
-            val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-            binding.navigationView.getHeaderView(0).findViewById<ImageView>(R.id.imageProfile).setImageBitmap(bitmap)
+        getPreferenceManager().apply {
+            getString(Constants.KEY_IMAGE)?.let {
+                val bytes = Base64.decode(it, Base64.DEFAULT)
+                val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                binding.navigationView.getHeaderView(0).findViewById<ImageView>(R.id.imageProfile).setImageBitmap(bitmap)
+            }
+            getString(Constants.KEY_NAME)?.let{
+                binding.navigationView.getHeaderView(0).findViewById<TextView>(R.id.textNickName).text = it
+            }
+
         }
     }
 

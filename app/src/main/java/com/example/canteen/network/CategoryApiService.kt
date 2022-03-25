@@ -6,6 +6,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface CategoryApiService {
-    @GET("/category")
+    @GET("category")
     fun getAllCategory(): Call<BaseResponse<List<Category>>>
 }

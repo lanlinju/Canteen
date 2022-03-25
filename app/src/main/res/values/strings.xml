@@ -38,4 +38,7 @@
     <string name="read_more">更多</string>
     <string name="share">分享</string>
     <string name="add_cart">加入购物车</string>
+    <string name="cart">Cart</string>
+    <string name="show_less">Show less</string>
+    <string name="show_more">Show more</string>
 </resources>

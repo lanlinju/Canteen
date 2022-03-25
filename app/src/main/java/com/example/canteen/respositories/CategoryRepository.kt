@@ -26,7 +26,7 @@ class CategoryRepository {
                 call: Call<BaseResponse<List<Category>>>,
                 response: Response<BaseResponse<List<Category>>>
             ) {
-                data.value = response.body()
+                data.value = response?.body()
             }
 
             override fun onFailure(call: Call<BaseResponse<List<Category>>>, t: Throwable) {
