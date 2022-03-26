@@ -21,8 +21,7 @@ class CartRepository {
     private val _cartListLiveData = MutableLiveData<List<Cart>>()
     val cartListLiveData: LiveData<List<Cart>> get() = _cartListLiveData
 
-    fun getAllCarts(userId: String) {
-        //val data: MutableLiveData<BaseResponse<List<Cart>>> = MutableLiveData()
+    fun getAllCarts(userId: String) :MutableLiveData<List<Cart>>{
         cartApiService.getAllCarts(userId).enqueue(object : Callback<BaseResponse<List<Cart>>> {
             override fun onResponse(
                 call: Call<BaseResponse<List<Cart>>>,
@@ -38,5 +37,6 @@ class CartRepository {
                 t.message?.showToast()
             }
         })
+        return _cartListLiveData
     }
 }

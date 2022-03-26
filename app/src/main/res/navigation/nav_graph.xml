@@ -43,7 +43,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="com.example.canteen.fragments.OrdersFragment"
+        android:name="com.example.canteen.fragments.orderfragment.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
     <fragment

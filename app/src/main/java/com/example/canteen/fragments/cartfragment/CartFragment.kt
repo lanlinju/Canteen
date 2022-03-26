@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.compositionLocalOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -28,10 +29,9 @@ class CartFragment : Fragment() {
         binding = DataBindingUtil.inflate<FragmentCartBinding?>(
             inflater, R.layout.fragment_cart, container, false
         ).apply {
-
             composeView.setContent {
                 CanteenTheme {
-                   CartDetail(cartViewModel)
+                   CartDetail(cartViewModel,this@CartFragment)
                 }
                 cartViewModel.getAllCarts(
                     requireActivity().getPreferenceManager().getString(Constants.KEY_USER_ID)!!

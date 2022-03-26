@@ -31,7 +31,7 @@
                 android:background="@drawable/background_back_button"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_back"
-                android:tint="@color/colorBlack"
+                app:tint="@color/colorBlack"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

@@ -4,23 +4,26 @@ package com.example.canteen.fragments.cartfragment
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.fragment.findNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.canteen.R
@@ -29,29 +32,51 @@ import com.example.canteen.models.Goods
 import com.example.canteen.utilities.Constants
 import com.example.canteen.viewmodels.CartViewModel
 import com.example.composetutorialsample.ui.theme.CanteenTheme
+import androidx.compose.ui.graphics.Color
 
 
 @Composable
-fun CartDetail(cartViewModel: CartViewModel) {
+fun CartDetail(cartViewModel: CartViewModel, fragment: CartFragment) {
     val cartList by cartViewModel.cartListLiveData.observeAsState()
-    Column() {
-        cartList?.let {
-            LazyColumn(modifier = Modifier
-                .padding(vertical = 4.dp)
-                .weight(1f)) {
-                items(items = it) { cart ->
-                    ItemContainerCardDetail(cart)
+    Scaffold(bottomBar = {
+        BottomButton(
+            onClicked = {
+                fragment.findNavController().navigate(R.id.homeFragment)
+            })
+    }) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(colorResource(id = R.color.background))
+        ) {
+            cartList?.let {
+                LazyColumn(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp)
+                        .weight(1f)
+                ) {
+                    items(items = it) { cart ->
+                        ItemContainerCardDetail(cart)
+                    }
                 }
             }
         }
-        Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()){
-            Button(onClick = { /*TODO*/ }) {
-                Text(text = "结算")
-            }
-            Spacer(modifier = Modifier.padding(horizontal = 8.dp))
-            Button(onClick = { /*TODO*/ }) {
-                Text(text = "结算")
-            }
+    }
+}
+
+@Composable
+fun BottomButton(onClicked: () -> Unit) {
+    Row(
+        horizontalArrangement = Arrangement.Center, modifier = Modifier
+            .fillMaxWidth()
+            .background(colorResource(id = R.color.background))
+    ) {
+        Button(onClick = onClicked, colors = buttonColors(backgroundColor = Color(0xFF0097FB))) {
+            Text(text = "返回首页")
+        }
+        Spacer(modifier = Modifier.padding(horizontal = 8.dp))
+        Button(onClick = { }, colors = buttonColors(backgroundColor = Color(0xFF0097FB))) {
+            Text(text = "结算")
         }
     }
 
@@ -99,7 +124,10 @@ private fun ItemCardContent(cart: Cart) {
                         }
                         isRefresh++
                     }) {
-                        Icon(painter = painterResource(R.drawable.ic_minus), contentDescription = "Add")
+                        Icon(
+                            painter = painterResource(R.drawable.ic_minus),
+                            contentDescription = "Minus"
+                        )
                     }
                     if (isRefresh > -1) {
                         Text(text = "${cart.num}", modifier = Modifier.padding(top = 12.dp))
@@ -108,7 +136,7 @@ private fun ItemCardContent(cart: Cart) {
                         cart.num++
                         isRefresh++
                     }) {
-                        Icon(imageVector = Icons.Rounded.Add, contentDescription = "Minus")
+                        Icon(imageVector = Icons.Filled.Add, contentDescription = "Add")
                     }
 
                 }
@@ -128,7 +156,7 @@ private fun ItemCardContent(cart: Cart) {
 
         if (expanded) {
             Text(
-                text = "商品描述："+cart.goods.content.repeat(4),
+                text = "商品描述：" + cart.goods.content.repeat(4),
                 modifier = Modifier
                     .padding(top = 8.dp, end = 12.dp)
             )
