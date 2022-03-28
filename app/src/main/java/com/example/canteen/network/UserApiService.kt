@@ -3,10 +3,7 @@ package com.example.canteen.network
 import com.example.canteen.models.User
 import com.example.canteen.responses.BaseResponse
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface UserApiService {
     @GET("user/login")
@@ -14,6 +11,9 @@ interface UserApiService {
 
     @POST("user/register")
     fun signUp(@Body user: User): Call<BaseResponse<String>>
+
+    @GET("user/{id}")
+    fun getUerById(@Path("id")  id:String): Call<BaseResponse<User>>
 
     @GET("user/ltest")
     fun test(@Query("id")  id:String): Call<BaseResponse<User>>

@@ -30,6 +30,7 @@
                 android:layout_marginStart="@dimen/_4sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_back"
+                app:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

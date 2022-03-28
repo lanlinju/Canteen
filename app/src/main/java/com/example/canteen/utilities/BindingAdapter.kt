@@ -20,7 +20,7 @@ import com.bumptech.glide.request.transition.Transition
 fun ImageView.setImageUrl(url: String?) {
     val imageUrl = Constants.NETWORK_DOMAIN + url
     Glide.with(context).load(imageUrl)
-//        .transition(DrawableTransitionOptions.withCrossFade())
+        .transition(DrawableTransitionOptions.withCrossFade())
         .into(this)
 }
 

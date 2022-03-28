@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandLess
@@ -82,7 +83,11 @@ fun ItemCardContent(order: Order) {
                     .weight(1f)
                     .padding(start = 8.dp, top = 8.dp)
             ) {
-                Text(text = "订单编号：${order.id} 日期：${order.cdate}")
+                var totalPrice = 0f
+                order.detailsList.forEach {
+                    totalPrice += it.num * it.price
+                }
+                Text(text = "订单编号：${order.id} 日期：${order.cdate} 总价：$totalPrice")
                 Text(text = "地址：${order.address} 电话：${order.phone}")
             }
 
@@ -102,7 +107,7 @@ fun ItemCardContent(order: Order) {
             Column(
                 modifier = Modifier
                     .padding(start = 12.dp, top = 12.dp, bottom = 4.dp, end = 4.dp)
-                    .background(colorResource(id = R.color.color_item))
+
             ) {
                 order.detailsList.forEach { details ->
                     ItemCardContentDetails(details)
@@ -123,7 +128,8 @@ private fun ItemCardContentDetails(orderDetails: OrderDetails) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 8.dp, bottom = 8.dp)
+            .background(colorResource(id = R.color.color_item), shape = RoundedCornerShape(8.dp))
+            .padding(start = 8.dp, top = 8.dp, bottom = 8.dp)
 
     ) {
         GoodsImage(url = orderDetails.goods.thumbnail)

@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        showLogD("HomeFragment:onCreateView")
+        showLogD("HomeFragment:onActivityCreated")
         preferenceManager = PreferenceManager(requireContext())
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
         loadUserDetails()

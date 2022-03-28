@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -43,6 +44,10 @@ class MainActivity : AppCompatActivity() {
 //        binding.smoothBottomBar.onItemSelected = {
 //            displayToast("Item $it selected")
 //        }
+    }
+
+    fun openDrawer(){
+        binding.drawerLayout.openDrawer(GravityCompat.START)
     }
 
     private fun setupSmoothBottomMenu() {

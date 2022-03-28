@@ -4,7 +4,10 @@ package com.example.canteen.utilities
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.ColorDrawable
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,17 +18,33 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.canteen.R
 import com.example.canteen.application.App
+import java.io.ByteArrayOutputStream
 
 fun Context.displayToast(message: String?) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
-fun String.showToast(){
-    Toast.makeText(App.context,this, Toast.LENGTH_LONG).show()
+fun String.showToast() {
+    Toast.makeText(App.context, this, Toast.LENGTH_LONG).show()
 }
 
 fun String.showLog() {
     Log.d("TAG", this)
+}
+
+fun Bitmap.toString(): String {
+    val previewWidth = 150
+    val previewHeight = this.height * previewWidth / this.width
+    val previewBitmap = Bitmap.createScaledBitmap(this, previewWidth, previewHeight, false)
+    val byteArrayOutputStream = ByteArrayOutputStream()
+    previewBitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream)
+    val bytes = byteArrayOutputStream.toByteArray()
+    return Base64.encodeToString(bytes, Base64.DEFAULT)
+}
+
+fun String.toBitmap(): Bitmap {
+    val bytes = Base64.decode(this, Base64.DEFAULT)
+    return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 }
 
 fun View.show() {
@@ -36,7 +55,7 @@ fun View.notShow() {
     this.visibility = View.GONE
 }
 
-fun Context.getPreferenceManager():PreferenceManager{
+fun Context.getPreferenceManager(): PreferenceManager {
     return PreferenceManager(this)
 }
 

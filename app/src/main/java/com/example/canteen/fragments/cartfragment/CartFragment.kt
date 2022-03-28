@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.canteen.R
 import com.example.canteen.databinding.FragmentCartBinding
+import com.example.canteen.theme.ui.CanteenM3Theme
 import com.example.canteen.utilities.Constants
 import com.example.canteen.utilities.getPreferenceManager
 import com.example.canteen.viewmodels.CartViewModel
@@ -30,7 +31,7 @@ class CartFragment : Fragment() {
             inflater, R.layout.fragment_cart, container, false
         ).apply {
             composeView.setContent {
-                CanteenTheme {
+                CanteenM3Theme {
                    CartDetail(cartViewModel,this@CartFragment)
                 }
                 cartViewModel.getAllCarts(

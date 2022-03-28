@@ -26,21 +26,33 @@ class OrdersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         orderViewModel = ViewModelProvider(this)[OrderViewModel::class.java]
-        binding = DataBindingUtil.inflate<FragmentOrdersBinding?>(inflater, R.layout.fragment_orders, container, false).apply {
+        binding = DataBindingUtil.inflate<FragmentOrdersBinding?>(
+            inflater,
+            R.layout.fragment_orders,
+            container,
+            false
+        ).apply {
+
             composeView.setContent {
                 CanteenTheme() {
                     OrderDetail(orderViewModel = orderViewModel)
                 }
             }
+
             requireActivity().getPreferenceManager().getString(
                 Constants.KEY_USER_ID
             )?.let { userId ->
                 orderViewModel.getAllOrders(userId = userId)
             }
         }
+        setListeners()
         return binding.root
     }
 
-
+    private fun setListeners() {
+        binding.imageBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+    }
 
 }

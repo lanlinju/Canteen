@@ -8,10 +8,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
-import androidx.compose.material.ButtonDefaults.buttonColors
+import androidx.compose.material.Card
+
+
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
+
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
@@ -32,7 +40,9 @@ import com.example.canteen.models.Goods
 import com.example.canteen.utilities.Constants
 import com.example.canteen.viewmodels.CartViewModel
 import com.example.composetutorialsample.ui.theme.CanteenTheme
-import androidx.compose.ui.graphics.Color
+import com.example.canteen.components.showAlert
+
+import com.example.composetutorialsample.ui.theme.LightBlue
 
 
 @Composable
@@ -66,16 +76,20 @@ fun CartDetail(cartViewModel: CartViewModel, fragment: CartFragment) {
 
 @Composable
 fun BottomButton(onClicked: () -> Unit) {
+    var openDialog by remember { mutableStateOf(false) }
+    if (openDialog){
+        showAlert(text = "确定结算吗？") { openDialog = false }
+    }
     Row(
         horizontalArrangement = Arrangement.Center, modifier = Modifier
             .fillMaxWidth()
             .background(colorResource(id = R.color.background))
     ) {
-        Button(onClick = onClicked, colors = buttonColors(backgroundColor = Color(0xFF0097FB))) {
+        OutlinedButton(onClick = onClicked) {
             Text(text = "返回首页")
         }
         Spacer(modifier = Modifier.padding(horizontal = 8.dp))
-        Button(onClick = { }, colors = buttonColors(backgroundColor = Color(0xFF0097FB))) {
+        OutlinedButton(onClick = { openDialog = true}) {
             Text(text = "结算")
         }
     }
@@ -85,7 +99,7 @@ fun BottomButton(onClicked: () -> Unit) {
 @Composable
 fun ItemContainerCardDetail(cart: Cart) {
     Card(
-        backgroundColor = MaterialTheme.colors.primary,
+        backgroundColor = LightBlue,
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
         ItemCardContent(cart)
