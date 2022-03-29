@@ -44,5 +44,6 @@
     <string name="order" translatable="false">订单</string>
     <string name="profile_error">获取简介错误</string>
     <string name="phone" translatable="false">手机号</string>
+    <string name="chat">Chat</string>
 
 </resources>

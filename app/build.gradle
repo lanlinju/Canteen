@@ -71,6 +71,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.4.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.0-alpha03")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.0-alpha03")
+    implementation("androidx.lifecycle:lifecycle-service:2.5.0-alpha03")
 //    implementation "androidx.lifecycle:lifecycle-extensions:2.4.0"
 //    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
 
@@ -106,4 +107,9 @@ dependencies {
 
     // M3
     implementation "androidx.compose.material3:material3:1.0.0-alpha04"
+
+    // WebSocket
+    implementation 'org.java-websocket:Java-WebSocket:1.5.2'
+
+
 }
