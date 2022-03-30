@@ -24,11 +24,15 @@ fun ImageView.setImageUrl(url: String?) {
         .into(this)
 }
 
+@BindingAdapter("imageBitmap")
+fun ImageView.setImageBitmap(imageString: String?) {
+    setImageBitmap(imageString?.toBitmap())
+}
+
 @BindingAdapter("app:visibleOrGone")
 fun View.setVisibleOrGone(show: Boolean) {
     visibility = if (show) VISIBLE else GONE
 }
-
 
 @BindingAdapter("imageUrlBlur")
 fun ImageView.setBlurBackground(url: String?) {

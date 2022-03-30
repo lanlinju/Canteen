@@ -107,7 +107,7 @@ private fun UserInfoFields(userData: User) {
 
         ProfileProperty(stringResource(R.string.phone), userData.phone)
 
-        //ProfileProperty(stringResource(R.string.twitter), userData.twitter, isLink = true)
+        ProfileProperty(stringResource(R.string.role), userData.roleName, isLink = true)
 
 //        userData.timeZone?.let {
 //            ProfileProperty(stringResource(R.string.timezone), userData.timeZone)

@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Base64
+import android.view.View
 import android.widget.ImageView
 import android.widget.PopupMenu
 import android.widget.TextView
@@ -21,7 +22,7 @@ import com.example.canteen.R
 import com.example.canteen.databinding.ActivityMainBinding
 import com.example.canteen.utilities.*
 
-class MainActivity : AppCompatActivity(),AnalyticsDelegate by AnalyticsDelegateImpl() {
+class MainActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegateImpl() {
 
     lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -50,18 +51,19 @@ class MainActivity : AppCompatActivity(),AnalyticsDelegate by AnalyticsDelegateI
         val bindIntent = Intent(this, JWebSocketClientService::class.java)
         val serviceConnection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                webSocketClientService = (service as JWebSocketClientService.JWebSocketClientBinder).service.apply {
-                    data.observe(this@MainActivity) {
-                        it.showToast()
+                webSocketClientService =
+                    (service as JWebSocketClientService.JWebSocketClientBinder).service.apply {
+                        data.observe(this@MainActivity) {
+                            it.showToast()
+                        }
                     }
-                }
             }
 
             override fun onServiceDisconnected(name: ComponentName?) {
 
             }
         }
-        startService(bindIntent)
+        startService(bindIntent)//启动服务
         bindService(bindIntent, serviceConnection, Context.BIND_AUTO_CREATE)
     }
 
@@ -79,6 +81,11 @@ class MainActivity : AppCompatActivity(),AnalyticsDelegate by AnalyticsDelegateI
     private fun init() {
     }
 
+    fun toggleBottomNavigationVisibility() {
+        with(binding.smoothBottomBar) {
+            visibility = if (visibility == View.VISIBLE) View.GONE else View.VISIBLE
+        }
+    }
 
     private fun setupSmoothBottomMenu() {
         val popupMenu = PopupMenu(this, null)

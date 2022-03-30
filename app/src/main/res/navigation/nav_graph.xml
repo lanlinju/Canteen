@@ -11,7 +11,7 @@
         android:label="HomeFragment" >
         <action
             android:id="@+id/action_homeFragment_to_userFragment"
-            app:destination="@id/userFragment" />
+            app:destination="@id/usersFragment" />
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -47,10 +47,10 @@
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders" />
     <fragment
-        android:id="@+id/userFragment"
+        android:id="@+id/usersFragment"
         android:name="com.example.canteen.fragments.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_users" />
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.example.canteen.fragments.FavoritesFragment"

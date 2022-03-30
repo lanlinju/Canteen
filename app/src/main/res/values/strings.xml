@@ -9,8 +9,8 @@
     <string name="name">用户名</string>
     <string name="password">密码</string>
     <string name="confirm_password" translatable="false">确认密码</string>
-    <string name="sign_up">注册</string>
-    <string name="alert_title">提示</string>
+    <string name="sign_up" translatable="false">注册</string>
+    <string name="alert_title" translatable="false">提示</string>
     <string name="cancel">取消</string>
     <string name="sure">确定</string>
     <string name="text_message_logout">确认要退出吗？</string>
@@ -44,6 +44,8 @@
     <string name="order" translatable="false">订单</string>
     <string name="profile_error">获取简介错误</string>
     <string name="phone" translatable="false">手机号</string>
-    <string name="chat">Chat</string>
+    <string name="chat" translatable="false">Chat</string>
+    <string name="role" translatable="false">角色</string>
+    <string name="select_user">选择用户</string>
 
 </resources>

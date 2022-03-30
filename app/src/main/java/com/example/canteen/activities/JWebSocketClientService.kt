@@ -19,12 +19,6 @@ class JWebSocketClientService : LifecycleService() {
     lateinit var client: JWebSocketClient
     val data: MutableLiveData<String> = MutableLiveData()
 
-    override fun onCreate() {
-        "service onCreate".showLog()
-        super.onCreate()
-
-    }
-
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         initSocketClient()
         "service onStartCommand".showLog()
@@ -64,7 +58,7 @@ class JWebSocketClientService : LifecycleService() {
     }
 
     override fun onDestroy() {
-        closeConnect()
+        //closeConnect()
         "service onDestroy".showLog()
         super.onDestroy()
 

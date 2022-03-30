@@ -14,20 +14,25 @@ class AnalyticsDelegateImpl: AnalyticsDelegate, DefaultLifecycleObserver {
     }
 
     override fun onStart(owner: LifecycleOwner) {
-        traceEvent("Activity started")
+        traceEvent("started")
+    }
+
+    override fun onResume(owner: LifecycleOwner) {
+        super.onResume(owner)
+        traceEvent("resume")
     }
 
     override fun onStop(owner: LifecycleOwner) {
-        traceEvent("Activity stopped")
+        traceEvent("stopped")
     }
 
     override fun onDestroy(owner: LifecycleOwner) {
-        traceEvent("Activity onDestroy")
+        traceEvent("onDestroy")
 
     }
 
     private fun traceEvent(event: String) {
         //MyAnalytics.newEvent(event)
-        event.showLog()
+        "Activity $event".showLog()
     }
 }
