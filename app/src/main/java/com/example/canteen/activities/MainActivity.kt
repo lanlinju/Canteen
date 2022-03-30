@@ -21,7 +21,7 @@ import com.example.canteen.R
 import com.example.canteen.databinding.ActivityMainBinding
 import com.example.canteen.utilities.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),AnalyticsDelegate by AnalyticsDelegateImpl() {
 
     lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         loadUserDetails()
+
+        registerAnalytics(lifecycle)
 
         navController = findNavController(R.id.navHostFragment)
         binding.navigationView.itemIconTintList = null
