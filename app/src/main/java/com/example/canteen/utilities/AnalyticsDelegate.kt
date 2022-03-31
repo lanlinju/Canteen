@@ -1,11 +1,35 @@
 package com.example.canteen.utilities
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import com.example.canteen.activities.MainActivity
 
 interface AnalyticsDelegate {
     fun registerAnalytics(lifecycle: Lifecycle)
+}
+
+interface BottomNavigationVisibilityDelegate{
+    fun registerBackPressed(fragment:Fragment)
+}
+
+class BottomNavigationVisibilityImpl:BottomNavigationVisibilityDelegate,DefaultLifecycleObserver{
+    lateinit var mainActivity: MainActivity
+    override fun registerBackPressed(fragment: Fragment) {
+        fragment.lifecycle.addObserver(this)
+        mainActivity = fragment.requireActivity() as MainActivity
+    }
+
+    override fun onStart(owner: LifecycleOwner) {
+        super.onCreate(owner)
+        mainActivity.toggleBottomNavigationVisibility()
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+        mainActivity.toggleBottomNavigationVisibility()
+        super.onDestroy(owner)
+    }
 }
 
 class AnalyticsDelegateImpl: AnalyticsDelegate, DefaultLifecycleObserver {

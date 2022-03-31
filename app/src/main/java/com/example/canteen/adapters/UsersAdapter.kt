@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.canteen.R
 import com.example.canteen.databinding.ItemContainerUserBinding
+import com.example.canteen.listeners.UserListener
 
 import com.example.canteen.models.User
 
 
-class UsersAdapter :ListAdapter<User,UsersAdapter.UserViewHolder>(DiffCallback){
+class UsersAdapter(val userListener: UserListener) :ListAdapter<User,UsersAdapter.UserViewHolder>(DiffCallback){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -32,6 +33,9 @@ class UsersAdapter :ListAdapter<User,UsersAdapter.UserViewHolder>(DiffCallback){
     inner class UserViewHolder(private val binding: ItemContainerUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindUser(user: User) {
             binding.user = user
+            binding.root.setOnClickListener{
+                userListener.onUserClicked(user)
+            }
         }
     }
 

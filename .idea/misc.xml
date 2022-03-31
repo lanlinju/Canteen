@@ -7,12 +7,16 @@
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable-v24/background_input.xml" value="0.2455" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_back_button.xml" value="0.2175" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_content_bottom.xml" value="0.2495" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_content_input.xml" value="0.2495" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_content_top.xml" value="0.2495" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_dialog.xml" value="0.2535" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_fading_edge.xml" value="0.2175" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_icon.xml" value="0.3325" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_image.xml" value="0.2755" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_input.xml" value="0.2495" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_received_message.xml" value="0.2495" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_search.xml" value="0.2735" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/background_sent_message.xml" value="0.2495" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_added.xml" value="0.164" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_back.xml" value="0.164" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_canteen_back.xml" value="0.164" />
@@ -24,10 +28,12 @@
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_logout.xml" value="0.2755" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_minus.xml" value="0.2165" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_more.xml" value="0.2165" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/drawable/ic_send.xml" value="0.2495" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/activity_sign_up.xml" value="0.3260416666666667" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/fragment_cart.xml" value="0.20953947368421053" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/layout/fragment_chat.xml" value="0.2949074074074074" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/fragment_conversations.xml" value="0.25" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/fragment_goods.xml" value="0.3145833333333333" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/fragment_goods_details.xml" value="0.2949074074074074" />
@@ -39,6 +45,8 @@
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/fragment_user.xml" value="0.20953947368421053" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/fragment_users.xml" value="0.2949074074074074" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/item_container_goods.xml" value="0.2949074074074074" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/layout/item_container_received_message.xml" value="0.25" />
+        <entry key="..\:/file/CanteenApp/app/src/main/res/layout/item_container_sent_message.xml" value="0.2949074074074074" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/item_container_user.xml" value="0.19814814814814816" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/layout_alert_dialog.xml" value="0.3260416666666667" />
         <entry key="..\:/file/CanteenApp/app/src/main/res/layout/layout_navigation_header.xml" value="0.2949074074074074" />

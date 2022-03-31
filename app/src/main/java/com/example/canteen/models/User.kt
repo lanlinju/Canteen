@@ -4,7 +4,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-
+@Parcelize
 data class User(
     @SerializedName("id") val id: String = "",
     @SerializedName("username") var name: String,
@@ -13,4 +13,4 @@ data class User(
     @SerializedName("email") val email: String,
     @SerializedName("roleName") var roleName: String = "普通员工",
     @SerializedName("phone") val phone: String = ""
-)
+): Parcelable
