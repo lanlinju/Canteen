@@ -7,7 +7,16 @@ import com.example.canteen.respositories.ConversationRepository
 
 class ConversationViewModel : ViewModel() {
     private val conversationRepository = ConversationRepository()
-    val conversationLiveData: LiveData<List<Conversation>> get() = conversationRepository.conversationLiveData
+    val conversationsLiveData: LiveData<List<Conversation>> get() = conversationRepository.conversationsLiveData
+    val conversationIdLive get() = conversationRepository.conversationIdLiveDate
+
+    fun getConversationId(receiverId: String, senderId: String) {
+        conversationRepository.getConversationId(receiverId, senderId)
+    }
+
+    fun insertConversion(conversation: Conversation) {
+        conversationRepository.insertConversion(conversation)
+    }
 
     fun getAllConversations() {
         conversationRepository.getAllConversations()

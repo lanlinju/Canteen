@@ -9,6 +9,8 @@ import com.example.canteen.R
 import com.example.canteen.databinding.ItemContainerReceivedMessageBinding
 import com.example.canteen.databinding.ItemContainerSentMessageBinding
 import com.example.canteen.models.Chat
+import java.text.SimpleDateFormat
+import java.util.*
 
 const val VIEW_TYPE_SENT = 1
 const val VIEW_TYPE_RECEIVED = 2
@@ -69,7 +71,7 @@ class ChatAdapter(
         private val binding: ItemContainerSentMessageBinding = itemContainerSendMessageBinding
         fun setData(chatMessage: Chat) {
             binding.textMessage.text = chatMessage.message
-            binding.textDataTime.text = chatMessage.dateTime.toString()
+            binding.textDataTime.text = getReadableDateTime(chatMessage.dateTime)
         }
 
     }
@@ -81,11 +83,14 @@ class ChatAdapter(
 
         fun setData(chatMessage: Chat, receiverProfileBitmap: Bitmap?) {
             binding.textMessage.text = chatMessage.message
-            binding.textDataTime.text = chatMessage.dateTime.toString()
+            binding.textDataTime.text = getReadableDateTime(chatMessage.dateTime)
             binding.imageProfile.setImageBitmap(receiverProfileBitmap)
         }
 
     }
 
+    private fun getReadableDateTime(date: Date): String {
+        return SimpleDateFormat("yyyy, MMMM dd日 - hh:mm a", Locale.getDefault()).format(date)
+    }
 
 }

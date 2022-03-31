@@ -47,6 +47,6 @@
     <string name="chat" translatable="false">Chat</string>
     <string name="role" translatable="false">角色</string>
     <string name="select_user">选择用户</string>
-    <string name="type_message">发送信息</string>
+    <string name="type_message">发送消息</string>
 
 </resources>
