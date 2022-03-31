@@ -37,27 +37,27 @@ class ChatFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         chatViewModel = ViewModelProvider(this)[ChatViewModel::class.java]
+        preferenceManager = requireActivity().getPreferenceManager()
         conversationViewModel = ViewModelProvider(this)[ConversationViewModel::class.java]
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_chat, container, false
         )
-        loadReceiverDetails()
-        setObservers()
-        setListeners()
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        init()
+        init()//获取聊天记录数据
+        loadReceiverDetails()
+        setObservers()
+        setListeners()
         preferenceManager.getString(Constants.KEY_USER_ID)?.let {
-            chatViewModel.getMessagesById(it, receiverUser.id)//获取聊天记录
+            chatViewModel.getMessagesById(it, receiverUser.id)
         }
 
     }
 
     private fun init() {
-        preferenceManager = requireActivity().getPreferenceManager()
         chatMessages = ArrayList()
         chatAdapter = ChatAdapter(
             chatMessages,
@@ -65,10 +65,14 @@ class ChatFragment : Fragment(){
             preferenceManager.getString(Constants.KEY_USER_ID)!!
         )
         binding.chatRecyclerView.adapter = chatAdapter
+
     }
 
     private fun loadReceiverDetails() {
         receiverUser = arguments?.getParcelable<User>("KEY_USER") as User
+        arguments?.getString("KEY_CONVERSATION_ID")?.let {
+            conversationId = it
+        }
         binding.textName.text = receiverUser.name
     }
 
@@ -82,15 +86,15 @@ class ChatFragment : Fragment(){
                 chatAdapter.notifyDataSetChanged() //刷新数据
                 binding.chatRecyclerView.visibility = View.VISIBLE
                 binding.progressBar.visibility = View.GONE
+                if (conversationId == null) { //获取会话Id 第一次加载数据时候，（1次）
+                    checkForConversion()
+                }
             }
         }//监听服务发来的消息
         (requireActivity() as MainActivity).socketService.chatMessage.observe(viewLifecycleOwner){
             chatMessages.add(it)
             chatAdapter.notifyItemRangeInserted(chatMessages.size, chatMessages.size) //插入新的的数据
             binding.chatRecyclerView.smoothScrollToPosition(chatMessages.size - 1) //设置滚动到末尾的位置
-            if (conversationId == null) { //获取会话Id 第一次加载数据时候，（1次）
-                checkForConversion()
-            }
         }
         with(conversationViewModel){//获取会话id
             conversationIdLive.observe(viewLifecycleOwner){
@@ -129,7 +133,6 @@ class ChatFragment : Fragment(){
             ))
             checkForConversion()
         }
-
         binding.inputMessage.text = null
     }
 

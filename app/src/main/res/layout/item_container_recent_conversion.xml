@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/textName"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_8sdp"
@@ -40,8 +40,19 @@
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintBottom_toTopOf="@id/viewSupport"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imageProfile" />
+
+        <TextView
+            android:id="@+id/textDataTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textName" />
+
 
         <TextView
             android:id="@+id/textRecentMessage"

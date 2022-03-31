@@ -10,6 +10,9 @@ import com.example.canteen.listeners.ConversionListener
 import com.example.canteen.models.Conversation
 import com.example.canteen.models.User
 import com.example.canteen.utilities.toBitmap
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class RecentConversationAdapter(
     private val chatMessages: List<Conversation>,
@@ -42,13 +45,14 @@ class RecentConversationAdapter(
             binding.imageProfile.setImageBitmap(conversation.conversionImage.toBitmap())
             binding.textName.text = conversation.conversionName
             binding.textRecentMessage.text = conversation.lastMessage
+            binding.textDataTime.text = SimpleDateFormat("yyyy-MM-dd ahh:mm", Locale.getDefault()).format(conversation.dateTime)
             binding.root.setOnClickListener {
                 val user = User(
                     id = conversation.conversionId,
                     name = conversation.conversionName,
                     image = conversation.conversionImage
                 )
-                conversionListener.onConversionClicked(user)
+                conversionListener.onConversionClicked(user,adapterPosition)
             }
         }
 

@@ -18,9 +18,7 @@ import com.example.canteen.databinding.FragmentConversationsBinding
 import com.example.canteen.listeners.ConversionListener
 import com.example.canteen.models.Conversation
 import com.example.canteen.models.User
-import com.example.canteen.utilities.Constants
-import com.example.canteen.utilities.PreferenceManager
-import com.example.canteen.utilities.getPreferenceManager
+import com.example.canteen.utilities.*
 import com.example.canteen.viewmodels.ConversationViewModel
 
 
@@ -72,6 +70,7 @@ class ConversationsFragment : Fragment(), ConversionListener {
                     val senderId: String = conversation.sendId
                     val receiverId: String = conversation.receiverId
                     val tempConversation = Conversation(
+                        id = conversation.id,
                         sendId = senderId,
                         receiverId = receiverId,
                         dateTime = conversation.dateTime,
@@ -112,9 +111,10 @@ class ConversationsFragment : Fragment(), ConversionListener {
         }
     }
 
-    override fun onConversionClicked(user: User) {
+    override fun onConversionClicked(user: User,position:Int) {
         Bundle().apply {
             putParcelable("KEY_USER", user)
+            putString("KEY_CONVERSATION_ID",conversions[position].id)
             findNavController().navigate(R.id.chatFragment, this)
         }
     }
