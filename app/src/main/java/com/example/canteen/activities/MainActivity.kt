@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegate
 
     lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    lateinit var webSocketClientService: JWebSocketClientService
+    lateinit var socketService: JWebSocketClientService
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,12 +52,8 @@ class MainActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegate
         val bindIntent = Intent(this, JWebSocketClientService::class.java)
         val serviceConnection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                webSocketClientService =
-                    (service as JWebSocketClientService.JWebSocketClientBinder).service.apply {
-                        data.observe(this@MainActivity) {
-                            it.showToast()
-                        }
-                    }
+                socketService =
+                    (service as JWebSocketClientService.JWebSocketClientBinder).service
             }
 
             override fun onServiceDisconnected(name: ComponentName?) {
@@ -111,7 +108,7 @@ class MainActivity : AppCompatActivity(), AnalyticsDelegate by AnalyticsDelegate
     }
 
     override fun onDestroy() {
-        webSocketClientService.onDestroy()
+        socketService.onDestroy()
         super.onDestroy()
     }
 }

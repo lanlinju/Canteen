@@ -5,19 +5,23 @@ import android.os.Binder
 import android.os.IBinder
 import android.util.Log
 import androidx.lifecycle.LifecycleService
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
+import com.example.canteen.models.Chat
 import com.example.canteen.network.im.JWebSocketClient
 import com.example.canteen.utilities.Constants
 import com.example.canteen.utilities.getPreferenceManager
 import com.example.canteen.utilities.showLog
+import com.example.canteen.utilities.showToast
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import java.net.URI
 
 class JWebSocketClientService : LifecycleService() {
     lateinit var client: JWebSocketClient
-    val data: MutableLiveData<String> = MutableLiveData()
+    private val _chatMessage: MutableLiveData<Chat> = MutableLiveData()
+    val chatMessage:LiveData<Chat> get() = _chatMessage
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         initSocketClient()
@@ -40,18 +44,15 @@ class JWebSocketClientService : LifecycleService() {
     private fun initSocketClient() {
         val uri = URI.create(
             Constants.WEBSCOCKET_URI + applicationContext.getPreferenceManager().getString(
-                Constants.KEY_NAME
+                Constants.KEY_USER_ID
             )
         )
         client = object : JWebSocketClient(uri) {
             override fun onMessage(message: String?) {
                 lifecycleScope.launch {
-                    message?.let {
-                        data.value = it
-                    }
-
+                    _chatMessage.value = Gson().fromJson(message,Chat::class.java)
                 }
-                message?.showLog()
+
             }
         }
         client.connect()
@@ -69,7 +70,7 @@ class JWebSocketClientService : LifecycleService() {
      *
      * @param msg
      */
-    fun sendMsg(msg: String) {
+    fun sendMessage(msg: String) {
         if (null != client) {
             Log.e("JWebSocketClientService", "发送的消息：$msg")
             client.send(msg)

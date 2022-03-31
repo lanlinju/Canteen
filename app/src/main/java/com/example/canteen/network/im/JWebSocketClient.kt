@@ -1,6 +1,7 @@
 package com.example.canteen.network.im
 
 import com.example.canteen.utilities.showLog
+import com.example.canteen.utilities.showToast
 import java.net.URI
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
@@ -13,7 +14,7 @@ open class JWebSocketClient(serverURI: URI): WebSocketClient(serverURI) {
     }
 
     override fun onMessage(message: String?) {
-        message?.showLog()
+
     }
 
     override fun onClose(code: Int, reason: String?, remote: Boolean) {

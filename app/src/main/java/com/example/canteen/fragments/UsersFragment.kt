@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.unit.Constraints
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +17,8 @@ import com.example.canteen.adapters.UsersAdapter
 import com.example.canteen.databinding.FragmentUsersBinding
 import com.example.canteen.listeners.UserListener
 import com.example.canteen.models.User
+import com.example.canteen.utilities.Constants
+import com.example.canteen.utilities.getPreferenceManager
 
 import com.example.canteen.utilities.showLog
 import com.example.canteen.viewmodels.UserViewModel
@@ -48,9 +51,11 @@ class UserFragment : Fragment(),UserListener {
             progressBarVisibility.observe(viewLifecycleOwner) {
                 binding.progressBar.visibility = it
             }
-            userListLiveData.observe(viewLifecycleOwner) { users ->
+            userListLiveData.observe(viewLifecycleOwner) { userList ->
                 toggleProgressBarVisibility()
-                users.toString().showLog()
+                val users = userList.filter { //过滤本地账号
+                    it.id != requireActivity().getPreferenceManager()?.getString(Constants.KEY_USER_ID)
+                }
                 usersAdapter.submitList(users)
                 binding.usersRecycleView.visibility = View.VISIBLE
             }

@@ -21,7 +21,7 @@ class BottomNavigationVisibilityImpl:BottomNavigationVisibilityDelegate,DefaultL
         mainActivity = fragment.requireActivity() as MainActivity
     }
 
-    override fun onStart(owner: LifecycleOwner) {
+    override fun onResume(owner: LifecycleOwner) {
         super.onCreate(owner)
         mainActivity.toggleBottomNavigationVisibility()
     }
