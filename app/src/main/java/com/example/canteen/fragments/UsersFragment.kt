@@ -33,7 +33,7 @@ class UserFragment : Fragment(),UserListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (requireActivity() as MainActivity).toggleBottomNavigationVisibility()
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_users, container, false)
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         return binding.root
@@ -72,11 +72,6 @@ class UserFragment : Fragment(),UserListener {
 
     private fun fetchUsersData() {
         userViewModel.getAllUsers()
-    }
-
-    override fun onDestroy() {
-        (requireActivity() as MainActivity).toggleBottomNavigationVisibility()
-        super.onDestroy()
     }
 
     override fun onUserClicked(user: User) {

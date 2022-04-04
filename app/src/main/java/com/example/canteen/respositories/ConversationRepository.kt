@@ -10,6 +10,7 @@ import com.example.canteen.utilities.showToast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 class ConversationRepository {
     private val conversationApiService =
@@ -51,6 +52,21 @@ class ConversationRepository {
                 }
             })
     }
+    fun getConversationsByUserId(userId:String){
+        conversationApiService.getConversationsByUserId(userId)
+            .enqueue(object : Callback<BaseResponse<List<Conversation>>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<List<Conversation>>>,
+                    response: Response<BaseResponse<List<Conversation>>>
+                ) {
+                    _conversationsLiveDate.value = response.body()?.data
+                }
+
+                override fun onFailure(call: Call<BaseResponse<List<Conversation>>>, t: Throwable) {
+                    t.message?.showToast()
+                }
+            })
+    }
 
     fun getAllConversations() {
         conversationApiService.getAllConversations()
@@ -68,8 +84,8 @@ class ConversationRepository {
             })
     }
 
-    fun updateLastMessage(conversationId: String, message: String) {
-        conversationApiService.updateLastMessage(conversationId, message)
+    fun updateLastMessage(conversationId: String, message: String,dateTime: Date) {
+        conversationApiService.updateLastMessage(conversationId, message,dateTime)
             .enqueue(object : Callback<BaseResponse<String>> {
                 override fun onResponse(
                     call: Call<BaseResponse<String>>,

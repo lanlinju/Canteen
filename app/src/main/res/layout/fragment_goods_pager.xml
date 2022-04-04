@@ -21,20 +21,29 @@
         android:layout_height="match_parent"
         tools:context=".fragments.GoodsPagerFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/goodsRecycleView"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:clipChildren="true"
-            android:orientation="vertical"
-            android:overScrollMode="never"
-            android:paddingStart="@dimen/_4sdp"
-            android:paddingTop="@dimen/_2sdp"
-            android:paddingEnd="@dimen/_6sdp"
-            android:paddingBottom="@dimen/_45sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/goodsRecycleView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:clipChildren="true"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:paddingStart="@dimen/_4sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingEnd="@dimen/_6sdp"
+                android:paddingBottom="@dimen/_45sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
         <ProgressBar
             android:layout_width="@dimen/_25sdp"

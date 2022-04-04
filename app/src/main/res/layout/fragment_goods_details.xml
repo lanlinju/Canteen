@@ -19,10 +19,10 @@
 
         <ImageView
             android:id="@+id/imageView"
+            imageUrlBlur="@{goods.thumbnail}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            imageUrlBlur="@{goods.thumbnail}"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ScrollView
@@ -39,12 +39,12 @@
                     android:layout_height="@dimen/_160sdp"
                     app:layout_constraintTop_toTopOf="parent" />
 
-<!--                <View-->
-<!--                    android:id="@+id/viewFadingEdge"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="@dimen/_40sdp"-->
-<!--                    android:background="@drawable/background_fading_edge"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@id/imageViewBackground" />-->
+                <!--                <View-->
+                <!--                    android:id="@+id/viewFadingEdge"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="@dimen/_40sdp"-->
+                <!--                    android:background="@drawable/background_fading_edge"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="@id/imageViewBackground" />-->
 
 
                 <ImageView
@@ -60,6 +60,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/colorTextIcons" />
+
+                <TextView
+                    android:id="@+id/textEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:text="编辑"
+                    android:textColor="@color/colorEdit"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/imageBack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/imageBack" />
+
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/imageGoods"
@@ -177,13 +191,13 @@
                     app:layout_constraintTop_toBottomOf="@id/textReadMore" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonShare"
+                    android:id="@+id/buttonDelete"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_8sdp"
-                    android:backgroundTint="#0097FB"
+                    android:backgroundTint="@color/colorDelete"
                     android:includeFontPadding="false"
-                    android:text="@string/share"
+                    android:text="@string/delete"
                     android:textSize="@dimen/_12ssp"
                     app:cornerRadius="@dimen/_6sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -207,7 +221,7 @@
                     app:cornerRadius="@dimen/_6sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/buttonShare"
+                    app:layout_constraintStart_toEndOf="@id/buttonDelete"
                     app:layout_constraintTop_toBottomOf="@id/viewDivider2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

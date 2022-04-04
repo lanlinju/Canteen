@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.canteen.models.Conversation
 import com.example.canteen.respositories.ConversationRepository
+import java.util.*
 
 class ConversationViewModel : ViewModel() {
     private val conversationRepository = ConversationRepository()
@@ -22,7 +23,11 @@ class ConversationViewModel : ViewModel() {
         conversationRepository.getAllConversations()
     }
 
-    fun updateLastMessage(conversationId: String, message: String) {
-        conversationRepository.updateLastMessage(conversationId, message)
+    fun getConversationsByUserId(userId:String) {
+        conversationRepository.getConversationsByUserId(userId)
+    }
+
+    fun updateLastMessage(conversationId: String, message: String,dateTime: Date) {
+        conversationRepository.updateLastMessage(conversationId, message,dateTime)
     }
 }

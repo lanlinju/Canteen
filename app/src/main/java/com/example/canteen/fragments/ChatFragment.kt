@@ -47,10 +47,10 @@ class ChatFragment : Fragment(){
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        init()//获取聊天记录数据
         loadReceiverDetails()
         setObservers()
         setListeners()
+        init()//获取聊天记录数据
         preferenceManager.getString(Constants.KEY_USER_ID)?.let {
             chatViewModel.getMessagesById(it, receiverUser.id)
         }
@@ -119,7 +119,7 @@ class ChatFragment : Fragment(){
         (requireActivity() as MainActivity).socketService.sendMessage(Gson().toJson(message))
         chatViewModel.insertChat(message)
         if(conversationId != null){//更新最新消息
-            conversationViewModel.updateLastMessage(conversationId!!, binding.inputMessage.text.toString())
+            conversationViewModel.updateLastMessage(conversationId!!, binding.inputMessage.text.toString(),Date())
         }else{//添加一个新会话
             conversationViewModel.insertConversion(Conversation(
                 lastMessage =  binding.inputMessage.text.toString(),
@@ -143,6 +143,11 @@ class ChatFragment : Fragment(){
                 preferenceManager.getString(Constants.KEY_USER_ID)!!
             )
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as MainActivity).binding.smoothBottomBar.visibility = View.GONE
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

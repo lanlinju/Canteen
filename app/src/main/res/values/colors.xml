@@ -74,5 +74,6 @@
 
     <!-- Status bar -->
     <color name="black30">#4D000000</color>
+    <color name="colorEdit">#0097FB</color>
 
 </resources>

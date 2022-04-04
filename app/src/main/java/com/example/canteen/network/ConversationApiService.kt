@@ -4,16 +4,21 @@ import com.example.canteen.models.Conversation
 import com.example.canteen.responses.BaseResponse
 import retrofit2.Call
 import retrofit2.http.*
+import java.util.*
 
 
 interface ConversationApiService {
     @GET("conversation")
     fun getAllConversations(): Call<BaseResponse<List<Conversation>>>
 
+    @GET("conversation/{userId}")
+    fun getConversationsByUserId(@Path("userId")userId:String): Call<BaseResponse<List<Conversation>>>
+
     @PUT("conversation/{conversationId}/{message}")
     fun updateLastMessage(
         @Path("conversationId") conversationId: String,
-        @Path("message") message: String
+        @Path("message") message: String,
+        @Body dateTime: Date
     ): Call<BaseResponse<String>>
 
     @POST("conversation")

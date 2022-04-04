@@ -36,6 +36,7 @@
     <string name="user">User</string>
     <string name="title">标题</string>
     <string name="read_more" translatable="false">更多</string>
+    <string name="read_less" translatable="false">更少</string>
     <string name="share">分享</string>
     <string name="add_cart" translatable="false">加入购物车</string>
     <string name="cart" translatable="false">Cart</string>
@@ -48,5 +49,8 @@
     <string name="role" translatable="false">角色</string>
     <string name="select_user">选择用户</string>
     <string name="type_message">发送消息</string>
+    <string name="delete">删除</string>
+    <string name="less_authority">权限不足</string>
+    <string name="success_delete">删除成功</string>
 
 </resources>

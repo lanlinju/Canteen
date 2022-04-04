@@ -37,6 +37,7 @@ class GoodsPagerFragment(private val category: Category) : Fragment(), GoodsList
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_goods_pager, container, false)
 
+        setListeners()
         doInitialization()
 
         return binding.root
@@ -55,10 +56,23 @@ class GoodsPagerFragment(private val category: Category) : Fragment(), GoodsList
         }
     }
 
+    private fun setListeners(){
+        with( binding.swipeRefreshLayout){
+            setColorSchemeResources(R.color.colorPrimary)
+            setOnRefreshListener {
+                goodsList.clear()
+                getGoodsData()
+            }
+        }
+
+    }
+
     private fun getGoodsData() {
+        binding.swipeRefreshLayout.isRefreshing = true
         goodsViewModel.getGoodsByCategoryName(categoryName = category.cname)
             .observe(viewLifecycleOwner) {
                 isLoaded = true
+                binding.swipeRefreshLayout.isRefreshing = false
                 if (it.code == 404 || it.code == -1) {
                     requireActivity().showDialog(it.msg) {
                     }
@@ -76,7 +90,6 @@ class GoodsPagerFragment(private val category: Category) : Fragment(), GoodsList
             putParcelable("KEY_GOODS", goods)
             findNavController().navigate(R.id.goodsDetailsFragment,this)
         }
-
     }
 
     override fun onStop() {

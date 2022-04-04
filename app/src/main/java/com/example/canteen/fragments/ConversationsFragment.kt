@@ -46,7 +46,7 @@ class ConversationsFragment : Fragment(), ConversionListener {
         setListeners()
         init()
         loadUserDetails()
-        conversationViewModel.getAllConversations()
+        conversationViewModel.getConversationsByUserId(preferenceManager.getString(Constants.KEY_USER_ID)!!)
     }
 
     private fun init() {
