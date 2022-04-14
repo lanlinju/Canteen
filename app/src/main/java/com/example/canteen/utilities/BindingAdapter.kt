@@ -16,11 +16,11 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 
-@BindingAdapter("imageUrl")
+@BindingAdapter("app:imageUrl")
 fun ImageView.setImageUrl(url: String?) {
     val imageUrl = Constants.NETWORK_DOMAIN + url
     Glide.with(context).load(imageUrl)
-        .transition(DrawableTransitionOptions.withCrossFade())
+//        .transition(DrawableTransitionOptions.withCrossFade())
         .into(this)
 }
 

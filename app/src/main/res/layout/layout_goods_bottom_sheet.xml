@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="categoryName"
+            type="String" />
+
+        <variable
+            name="goods"
+            type="com.example.canteen.models.Goods" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/goodsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutHeader"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/_8sdp">
+
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:text="@string/add_goods"
+                android:textColor="@color/colorTextIcons"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageClose"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/ic_close"
+                app:layout_constraintBottom_toBottomOf="@id/textTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/textTitle"
+                app:tint="@color/colorTextIcons" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:padding="@dimen/_24sdp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <FrameLayout
+                    android:id="@+id/layoutImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/imageProfile"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:background="@drawable/background_image_goods"
+                        android:scaleType="centerCrop"
+                        app:riv_corner_radius="@dimen/_8sdp" />
+
+                    <TextView
+                        android:id="@+id/textAddImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/add"
+                        android:textColor="@color/secondary_text"
+                        android:textSize="@dimen/_10ssp" />
+                </FrameLayout>
+
+                <EditText
+                    android:id="@+id/inputName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/background_input"
+                    android:hint="@string/goods_name"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+                    android:text='@{"商品名: " + goods.name}'
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/_13ssp" />
+
+                <EditText
+                    android:id="@+id/inputContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@drawable/background_input"
+                    android:hint="@string/goods_content"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+                    android:text='@{"描述: " + goods.content}'
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/_13ssp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp">
+
+                    <EditText
+                        android:id="@+id/inputCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:background="@drawable/background_input"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:hint="@string/goods_category"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_16sdp"
+                        android:paddingEnd="@dimen/_16sdp"
+                        android:text='@{"类型: " + categoryName}'
+                        android:textColor="@color/primary_text"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageSelectCategory"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:src="@drawable/ic_expand_more"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <EditText
+                    android:id="@+id/inputPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@drawable/background_input"
+                    android:hint="@string/goods_price"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+                    android:text='@{"价格: " + goods.price}'
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/_13ssp" />
+
+                <EditText
+                    android:id="@+id/inputPlace"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@drawable/background_input"
+                    android:hint="@string/goods_place"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+                    android:text='@{"来源地: " + goods.place}'
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/_13ssp"
+                    android:visibility="gone" />
+
+                <EditText
+                    android:id="@+id/inputNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@drawable/background_input"
+                    android:hint="@string/goods_number"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+                    android:text='@{"数量: " + goods.number}'
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/_13ssp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:animateLayoutChanges="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_50sdp"
+                        android:text="@string/save"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/_8sdp" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/colorAccent"
+                        android:visibility="gone" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/textCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/cancel"
+                    android:textColor="@color/primary"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+</layout>

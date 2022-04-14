@@ -128,6 +128,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabNewGoods"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:layout_marginBottom="@dimen/_24sdp"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_add"
+            android:backgroundTint="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

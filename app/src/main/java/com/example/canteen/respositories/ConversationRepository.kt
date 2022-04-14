@@ -7,6 +7,8 @@ import com.example.canteen.network.ApiClient
 import com.example.canteen.network.ConversationApiService
 import com.example.canteen.responses.BaseResponse
 import com.example.canteen.utilities.showToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,12 +49,14 @@ class ConversationRepository {
                 ) {
                     _conversationIdLiveDate.value = response.body()?.data
                 }
+
                 override fun onFailure(call: Call<BaseResponse<String>>, t: Throwable) {
                     t.message?.showToast()
                 }
             })
     }
-    fun getConversationsByUserId(userId:String){
+
+    fun getConversationsByUserId(userId: String) {
         conversationApiService.getConversationsByUserId(userId)
             .enqueue(object : Callback<BaseResponse<List<Conversation>>> {
                 override fun onResponse(
@@ -84,8 +88,8 @@ class ConversationRepository {
             })
     }
 
-    fun updateLastMessage(conversationId: String, message: String,dateTime: Date) {
-        conversationApiService.updateLastMessage(conversationId, message,dateTime)
+    fun updateLastMessage(conversationId: String, message: String, dateTime: Date) {
+        conversationApiService.updateLastMessage(conversationId, message, dateTime)
             .enqueue(object : Callback<BaseResponse<String>> {
                 override fun onResponse(
                     call: Call<BaseResponse<String>>,
@@ -98,5 +102,17 @@ class ConversationRepository {
                     t.message?.showToast()
                 }
             })
+    }
+
+    suspend fun deleteConversation(id: String): String? {
+        return withContext(Dispatchers.IO) {
+            val result = conversationApiService.deleteConversation(id)
+            if (result.isSuccessful) {
+                result.body()?.data
+            } else {
+                val errorMessage = "出错了，状态码：${result.code()},信息：${result.message()}"
+                throw Exception(errorMessage)
+            }
+        }
     }
 }

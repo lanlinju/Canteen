@@ -77,6 +77,8 @@ class SearchFragment : Fragment(), GoodsListener {
         binding.imageSearch.setOnClickListener {
             if (binding.inputSearch.text.toString().trim().isNotBlank()) {
                 searchGoods(binding.inputSearch.text.toString().trim())
+                goodsList.clear()
+                goodsAdapter.notifyDataSetChanged()
             } else {
                 goodsList.clear()
                 goodsAdapter.notifyDataSetChanged()

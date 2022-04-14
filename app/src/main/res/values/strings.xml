@@ -3,12 +3,12 @@
     <string name="welcome_back" translatable="false">Welcome Back!</string>
     <string name="login_to_continue" translatable="false">Login to continue</string>
     <string name="email">邮箱</string>
-    <string name="create_new_account" translatable="false">注册账号</string>
+    <string name="create_new_account">注册账号</string>
     <string name="sign_in">登 录</string>
     <string name="add_image">添加头像</string>
     <string name="name">用户名</string>
     <string name="password">密码</string>
-    <string name="confirm_password" translatable="false">确认密码</string>
+    <string name="confirm_password">确认密码</string>
     <string name="sign_up" translatable="false">注册</string>
     <string name="alert_title" translatable="false">提示</string>
     <string name="cancel">取消</string>
@@ -52,5 +52,22 @@
     <string name="delete">删除</string>
     <string name="less_authority">权限不足</string>
     <string name="success_delete">删除成功</string>
+    <string name="add_goods">新增货物</string>
+    <string name="add">添加</string>
+    <string name="goods_name">商品名</string>
+    <string name="goods_price">价格</string>
+    <string name="goods_place">来源地</string>
+    <string name="goods_content">描述</string>
+    <string name="goods_number">数量</string>
+    <string name="save">保存</string>
+    <string name="edit">编辑</string>
+    <string name="permission_less">权限不足！</string>
+    <string name="upload_success" translatable="false">添加成功</string>
+    <string name="upload_failed" translatable="false">添加失败</string>
+    <string name="goods_category">类型</string>
+    <string name="update">更新</string>
+    <string name="update_goods_details">更新货物信息</string>
+    <string name="success">成功</string>
+    <string name="failed">失败</string>
 
 </resources>

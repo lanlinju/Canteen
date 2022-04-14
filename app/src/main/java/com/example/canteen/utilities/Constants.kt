@@ -11,9 +11,9 @@ class Constants {
         const val KEY_USER_ID = "userId"
         const val KEY_ROSE_NAME = "roseName"
 
-//        const val NETWORK_DOMAIN = "http://192.168.1.5:8081/"
-        const val NETWORK_DOMAIN = "http://192.168.2.115:8081/"
-        const val WEBSCOCKET_URI = "ws://192.168.2.115:8081/imserver/"
+        const val NETWORK_DOMAIN = "http://192.168.1.5:8081/"
+//        const val NETWORK_DOMAIN = "http://192.168.2.115:8081/"
+        const val WEBSCOCKET_URI = "ws://192.168.1.5:8081/imserver/"
 
         const val KEY_ROSE_SYSTEM = "超级管理员"
         const val KEY_ROSE_COMMON = "普通员工"

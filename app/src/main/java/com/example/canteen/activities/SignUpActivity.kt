@@ -3,12 +3,15 @@ package com.example.canteen.activities
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Patterns
 import android.view.View
 import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -16,12 +19,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.canteen.R
 import com.example.canteen.databinding.ActivitySignUpBinding
 import com.example.canteen.models.User
-import com.example.canteen.utilities.Constants
-import com.example.canteen.utilities.PreferenceManager
-import com.example.canteen.utilities.displayToast
+import com.example.canteen.utilities.*
 import com.example.canteen.viewmodels.SignUpViewModel
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.FileNotFoundException
+import java.net.URI
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -101,6 +104,12 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
 
+//    private val getDocumentLauncher =
+//        registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) {
+//
+//        }
+//    getDocumentLauncher.launch(arrayOf("image/*","text/plain"))//选择照片
+
     private fun encodeImage(bitmap: Bitmap): String { //对位图进行修改大小 压缩和编码
         val previewWidth = 150
         val previewHeight = bitmap.height * previewWidth / bitmap.width
@@ -112,7 +121,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun isValidSignUpDetails(): Boolean { //验证输入的合法性
-        return if (encodedImage == null) {
+        return if (encodedImage.isEmpty()) {
             displayToast("Select profile image")
             false
         } else if (binding.inputName.text.toString().trim().isEmpty()) {

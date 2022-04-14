@@ -33,7 +33,6 @@ import com.example.canteen.viewmodels.OrderViewModel
 @Composable
 fun OrderDetail(orderViewModel: OrderViewModel) {
     val orderList by orderViewModel.orderListLiveData.observeAsState()
-
     Column(
         modifier = Modifier
             .fillMaxSize()

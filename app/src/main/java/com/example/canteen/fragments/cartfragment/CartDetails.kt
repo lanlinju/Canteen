@@ -218,10 +218,10 @@ fun DefaultPreview() {
             thumbnail = "ss",
             date = "null",
             categoryId = "1",
-            dangerNum = "67",
+            dangerNum = 67,
             number = "22",
             place = "ss",
-            providerId = "09"
+            providerId = 9
         )
         val cart = Cart("1", "2", 34, goods = goods)
         val cart1 = Cart("1", "2", 100, goods = goods)

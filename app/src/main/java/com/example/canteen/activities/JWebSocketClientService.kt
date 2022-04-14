@@ -14,14 +14,15 @@ import com.example.canteen.utilities.Constants
 import com.example.canteen.utilities.getPreferenceManager
 import com.example.canteen.utilities.showLog
 import com.example.canteen.utilities.showToast
+
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import java.net.URI
 
 class JWebSocketClientService : LifecycleService() {
-    lateinit var client: JWebSocketClient
+    private var client: JWebSocketClient? = null
     private val _chatMessage: MutableLiveData<Chat> = MutableLiveData()
-    val chatMessage:LiveData<Chat> get() = _chatMessage
+    val chatMessage: LiveData<Chat> get() = _chatMessage
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         initSocketClient()
@@ -50,12 +51,12 @@ class JWebSocketClientService : LifecycleService() {
         client = object : JWebSocketClient(uri) {
             override fun onMessage(message: String?) {
                 lifecycleScope.launch {
-                    _chatMessage.value = Gson().fromJson(message,Chat::class.java)
+                    _chatMessage.value = Gson().fromJson(message, Chat::class.java)
                 }
 
             }
         }
-        client.connect()
+        client?.connect()
     }
 
     override fun onDestroy() {
@@ -71,10 +72,13 @@ class JWebSocketClientService : LifecycleService() {
      * @param msg
      */
     fun sendMessage(msg: String) {
-        if (null != client) {
-            Log.e("JWebSocketClientService", "发送的消息：$msg")
-            client.send(msg)
+        Log.e("JWebSocketClientService", "发送的消息：$msg")
+        try {
+            client?.send(msg)
+        }catch (e:Exception){
+            e.message?.showToast()
         }
+
     }
 
     /**

@@ -66,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/_12sdp"
-                    android:text="编辑"
+                    android:text="@string/edit"
                     android:textColor="@color/colorEdit"
                     android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"
@@ -227,6 +227,17 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:indeterminateTint="@color/colorPrimary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

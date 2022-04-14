@@ -88,6 +88,7 @@ class GoodsPagerFragment(private val category: Category) : Fragment(), GoodsList
     override fun onGoodsClicked(goods: Goods) {
         Bundle().apply {
             putParcelable("KEY_GOODS", goods)
+            putString("KEY_CATEGORY",category.cname)
             findNavController().navigate(R.id.goodsDetailsFragment,this)
         }
     }

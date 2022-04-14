@@ -1,6 +1,5 @@
 package com.example.canteen.respositories
 
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.canteen.models.Goods
@@ -10,6 +9,8 @@ import com.example.canteen.responses.BaseResponse
 import com.example.canteen.responses.GoodsResponse
 import com.example.canteen.responses.StatusCode
 import com.example.canteen.utilities.showToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +22,35 @@ class GoodRepository {
     val isDeleted: LiveData<Boolean> get() = _isDeleted
     private val _searchResultLiveData = MutableLiveData<List<Goods>>()
     val searchResultLiveDate: LiveData<List<Goods>> get() = _searchResultLiveData
+
+    suspend fun insertGoods(goods: Goods): String? {
+        return withContext(Dispatchers.IO) {
+            val result = goodsApiService.insertGoods(goods)
+            if (result.isSuccessful) {
+                result.body()?.data
+            } else {
+                var errorMessage = "出错了，状态码：${result.code()}"
+                errorMessage.showToast()
+                result.body()?.let {
+                    errorMessage += ",信息：${result.message()}"
+                }
+                throw Exception(errorMessage)
+            }
+        }
+    }
+
+    suspend fun updateGoods(goods: Goods): String? {
+        return withContext(Dispatchers.IO) {
+            val result = goodsApiService.updateGoods(goods)
+            if (result.isSuccessful) {
+                result.body()?.data
+            } else {
+                var errorMessage = "出错了，状态码：${result.code()}"
+                    errorMessage += ",信息：${result.message()}"
+                throw Exception(errorMessage)
+            }
+        }
+    }
 
     fun searchGoodsByName(name: String) {
         goodsApiService.searchGoodsByName(name)
@@ -39,7 +69,7 @@ class GoodRepository {
     }
 
     fun deleteGoods(goods: Goods) {
-        goodsApiService.deleteGoods(goods.id).enqueue(object : Callback<BaseResponse<String>> {
+        goodsApiService.deleteGoods(goods.id!!).enqueue(object : Callback<BaseResponse<String>> {
             override fun onResponse(
                 call: Call<BaseResponse<String>>,
                 response: Response<BaseResponse<String>>
