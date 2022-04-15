@@ -54,4 +54,16 @@ class CartRepository {
             }
         }
     }
+
+    suspend fun updateCart(cart: Cart): BaseResponse<String>? {
+        return withContext(Dispatchers.IO) {
+            val result = cartApiService.updateCart(cart)
+            if (result.isSuccessful) {
+                result.body()
+            } else {
+                val errorMessage = "出错了，状态码：${result.code()},信息：${result.message()}"
+                throw Exception(errorMessage)
+            }
+        }
+    }
 }

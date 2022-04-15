@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.canteen.models.Cart
 import com.example.canteen.responses.BaseResponse
 import com.example.canteen.respositories.CartRepository
+import com.example.canteen.utilities.showLog
 import com.example.canteen.utilities.showToast
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
@@ -27,16 +28,32 @@ class CartViewModel : ViewModel() {
             flow {
                 try {
                     val info = cartRepository.insertCart(cart)
-                    emit(info!!)
+                    emit(info)
                 } catch (e: Exception) {
                     e.message?.showToast()
                 }
             }.collect {
-                if (it.code == 0) {
+                if (it?.code == 0) {
                     "添加成功".showToast()
                 }
             }
         }
+    }
 
+    fun updateCart(cart: Cart) {
+        viewModelScope.launch {
+            flow {
+                try {
+                    val info = cartRepository.updateCart(cart)
+                    emit(info)
+                } catch (e: Exception) {
+                    e.message?.showToast()
+                }
+            }.collect {
+                if (it?.code == 0) {
+                    "更新成功".showLog()
+                }
+            }
+        }
     }
 }

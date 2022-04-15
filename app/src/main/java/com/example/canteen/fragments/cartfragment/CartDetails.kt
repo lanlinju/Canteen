@@ -31,6 +31,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.fragment.findNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -66,7 +67,7 @@ fun CartDetail(cartViewModel: CartViewModel, fragment: CartFragment) {
                         .weight(1f)
                 ) {
                     items(items = it) { cart ->
-                        ItemContainerCardDetail(cart)
+                        ItemContainerCardDetail(cart,cartViewModel)
                     }
                 }
             }
@@ -97,17 +98,17 @@ fun BottomButton(onClicked: () -> Unit) {
 }
 
 @Composable
-fun ItemContainerCardDetail(cart: Cart) {
+fun ItemContainerCardDetail(cart: Cart,cartViewModel: CartViewModel) {
     Card(
         backgroundColor = LightBlue,
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
-        ItemCardContent(cart)
+        ItemCardContent(cart, cartViewModel)
     }
 }
 
 @Composable
-private fun ItemCardContent(cart: Cart) {
+private fun ItemCardContent(cart: Cart,cartViewModel: CartViewModel) {
     var isRefresh by remember { mutableStateOf(0) }
     var expanded by remember { mutableStateOf(false) }
 
@@ -148,6 +149,7 @@ private fun ItemCardContent(cart: Cart) {
                     }
                     IconButton(onClick = {
                         cart.num++
+                        cartViewModel.updateCart(cart)
                         isRefresh++
                     }) {
                         Icon(imageVector = Icons.Filled.Add, contentDescription = "Add")
@@ -229,7 +231,7 @@ fun DefaultPreview() {
         val cartList = listOf<Cart>(cart, cart1, cart2, cart)
         LazyColumn(modifier = Modifier.padding(vertical = 4.dp)) {
             items(items = cartList) { cart ->
-                ItemContainerCardDetail(cart)
+                ItemContainerCardDetail(cart, cartViewModel = viewModel(modelClass = CartViewModel::class.java))
             }
         }
     }

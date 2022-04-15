@@ -4,10 +4,7 @@ import com.example.canteen.models.Cart
 import com.example.canteen.responses.BaseResponse
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface CartApiService {
     @GET("cart/{userid}")
@@ -15,4 +12,7 @@ interface CartApiService {
 
     @POST("cart")
     suspend fun insertCart(@Body cart: Cart):Response<BaseResponse<String>>
+
+    @PUT("cart")
+    suspend fun updateCart(@Body cart: Cart):Response<BaseResponse<String>>
 }
