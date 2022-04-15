@@ -25,10 +25,12 @@ import com.example.canteen.activities.MainActivity
 import com.example.canteen.application.App
 import com.example.canteen.databinding.FragmentGoodsDetailsBinding
 import com.example.canteen.databinding.LayoutGoodsBottomSheetBinding
+import com.example.canteen.models.Cart
 import com.example.canteen.models.Category
 import com.example.canteen.models.Goods
 import com.example.canteen.models.UiState
 import com.example.canteen.utilities.*
+import com.example.canteen.viewmodels.CartViewModel
 import com.example.canteen.viewmodels.FileViewModel
 import com.example.canteen.viewmodels.GoodsViewModel
 import com.example.canteen.viewmodels.HomeViewModel
@@ -45,6 +47,7 @@ class GoodsDetailsFragment : Fragment() {
     private lateinit var goodsViewModel: GoodsViewModel
     private lateinit var goodsDetails: Goods
     private lateinit var fileViewModel: FileViewModel
+    private lateinit var cartViewModel: CartViewModel
     private var goodsBottomSheetDialog: BottomSheetDialog? = null
     private lateinit var layoutGoodsBottomSheetBinding: LayoutGoodsBottomSheetBinding
     private lateinit var categoryList: List<Category>
@@ -57,6 +60,7 @@ class GoodsDetailsFragment : Fragment() {
         (requireActivity() as MainActivity).binding.smoothBottomBar.notShow()
         fileViewModel = ViewModelProvider(this)[FileViewModel::class.java]
         goodsViewModel = ViewModelProvider(this)[GoodsViewModel::class.java]
+        cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_goods_details, container, false)
         return binding.root
@@ -134,8 +138,12 @@ class GoodsDetailsFragment : Fragment() {
                 } else { //请求权限
                     requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
                 }
+            }//添加购物车
+            buttonAddCarts.setOnClickListener {
+                val userId = requireContext().getPreferenceManager().getString(Constants.KEY_USER_ID)!!
+                val cart = Cart(userId = userId, goodsId = goodsDetails.id!!, num = 1)
+                cartViewModel.insertCart(cart)
             }
-
         }
     }
 

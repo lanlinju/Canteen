@@ -1,4 +1,4 @@
-package com.example.canteen.respositories
+package com.example.canteen.network
 
 import com.example.canteen.responses.BaseResponse
 import okhttp3.MultipartBody

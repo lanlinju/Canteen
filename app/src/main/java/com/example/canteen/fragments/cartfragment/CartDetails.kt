@@ -123,7 +123,7 @@ private fun ItemCardContent(cart: Cart) {
     ) {
 
         Row {
-            GoodsImage(url = cart.goods.thumbnail)
+            GoodsImage(url = cart.goods!!.thumbnail)
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -170,7 +170,7 @@ private fun ItemCardContent(cart: Cart) {
 
         if (expanded) {
             Text(
-                text = "商品描述：" + cart.goods.content.repeat(4),
+                text = "商品描述：" + cart.goods!!.content.repeat(4),
                 modifier = Modifier
                     .padding(top = 8.dp, end = 12.dp)
             )
@@ -181,7 +181,7 @@ private fun ItemCardContent(cart: Cart) {
 
 @Composable
 fun GoodsPrice(cart: Cart) {
-    val totalPrice = cart.goods.price.toFloat() * cart.num
+    val totalPrice = cart.goods!!.price.toFloat() * cart.num
     Text(
         text = "单价:${cart.goods.price}\n金额:${totalPrice}",
         style = MaterialTheme.typography.body1,

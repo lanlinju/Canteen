@@ -3,6 +3,7 @@ package com.example.canteen.respositories
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.canteen.network.ApiClient
+import com.example.canteen.network.FileApiService
 import com.example.canteen.responses.BaseResponse
 import com.example.canteen.utilities.showLog
 import okhttp3.MultipartBody
