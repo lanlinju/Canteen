@@ -6,6 +6,8 @@ import com.example.canteen.network.ApiClient
 import com.example.canteen.network.OrderApiService
 import com.example.canteen.responses.BaseResponse
 import com.example.canteen.utilities.showToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,10 +26,35 @@ class OrderRepository {
                 ) {
                     data.value = response.body()?.data
                 }
+
                 override fun onFailure(call: Call<BaseResponse<List<Order>>>, t: Throwable) {
                     t.message?.showToast()
                 }
             })
         return data
+    }
+
+    suspend fun insertOrder(order: Order): BaseResponse<String>? {
+        return withContext(Dispatchers.IO) {
+            val result = orderApiService.insertOrder(order)
+            if (result.isSuccessful) {
+                result.body()
+            } else {
+                val errorMessage = "出错了，状态码：${result.code()},信息：${result.message()}"
+                throw Exception(errorMessage)
+            }
+        }
+    }
+
+    suspend fun deleteOrder(orderId: Int): BaseResponse<String>? {
+        return withContext(Dispatchers.IO) {
+            val result = orderApiService.deleteOrder(orderId)
+            if (result.isSuccessful) {
+                result.body()
+            } else {
+                val errorMessage = "出错了，状态码：${result.code()},信息：${result.message()}"
+                throw Exception(errorMessage)
+            }
+        }
     }
 }

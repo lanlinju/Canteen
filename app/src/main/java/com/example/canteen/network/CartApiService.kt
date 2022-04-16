@@ -11,8 +11,14 @@ interface CartApiService {
     fun getAllCarts(@Path("userid") userId: String): Call<BaseResponse<List<Cart>>>
 
     @POST("cart")
-    suspend fun insertCart(@Body cart: Cart):Response<BaseResponse<String>>
+    suspend fun insertCart(@Body cart: Cart): Response<BaseResponse<String>>
 
     @PUT("cart")
-    suspend fun updateCart(@Body cart: Cart):Response<BaseResponse<String>>
+    suspend fun updateCart(@Body cart: Cart): Response<BaseResponse<String>>
+
+    @DELETE("cart/{userid}/{goodsid}")
+    suspend fun deleteCart(
+        @Path("userid") userId: String,
+        @Path("goodsid") goodsId: String
+    ): Response<BaseResponse<String>>
 }

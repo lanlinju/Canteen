@@ -201,8 +201,8 @@ class HomeFragment : Fragment() {
             }
             textCancel.setOnClickListener {
 //                layoutGoodsBottomSheetBinding.inputName.text.toString().split(":".toRegex()).toTypedArray()[1].length.toString().showLog()
-//                resetBottomView()
-//                goodsBottomSheetDialog?.dismiss()
+                resetBottomView()
+                goodsBottomSheetDialog?.dismiss()
             }
             imageSelectCategory.setOnClickListener {
                 val items = Array<String>(homeViewModel.categoryList.size) {

@@ -69,7 +69,7 @@ class GoodsDetailsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         goodsDetails = arguments?.getParcelable<Goods>("KEY_GOODS")!!
-        categoryName = arguments?.getString("KEY_CATEGORY")!!
+        arguments?.getString("KEY_CATEGORY")?.let { categoryName = it }
         categoryList = App.INSTANCE.categoryList!!
         binding.goods = goodsDetails
         requireActivity().apply {
@@ -140,7 +140,8 @@ class GoodsDetailsFragment : Fragment() {
                 }
             }//添加购物车
             buttonAddCarts.setOnClickListener {
-                val userId = requireContext().getPreferenceManager().getString(Constants.KEY_USER_ID)!!
+                val userId =
+                    requireContext().getPreferenceManager().getString(Constants.KEY_USER_ID)!!
                 val cart = Cart(userId = userId, goodsId = goodsDetails.id!!, num = 1)
                 cartViewModel.insertCart(cart)
             }

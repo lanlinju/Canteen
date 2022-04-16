@@ -66,4 +66,16 @@ class CartRepository {
             }
         }
     }
+
+    suspend fun deleteCart(userId: String, goodsId: String): BaseResponse<String>? {
+        return withContext(Dispatchers.IO) {
+            val result = cartApiService.deleteCart(userId, goodsId)
+            if (result.isSuccessful) {
+                result.body()
+            } else {
+                val errorMessage = "出错了，状态码：${result.code()},信息：${result.message()}"
+                throw Exception(errorMessage)
+            }
+        }
+    }
 }

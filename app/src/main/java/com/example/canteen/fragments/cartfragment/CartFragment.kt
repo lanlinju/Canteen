@@ -14,6 +14,7 @@ import com.example.canteen.theme.ui.CanteenM3Theme
 import com.example.canteen.utilities.Constants
 import com.example.canteen.utilities.getPreferenceManager
 import com.example.canteen.viewmodels.CartViewModel
+import com.example.canteen.viewmodels.OrderViewModel
 import com.example.composetutorialsample.ui.theme.CanteenTheme
 
 
@@ -21,18 +22,25 @@ class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
     private lateinit var cartViewModel: CartViewModel
+    private lateinit var orderViewModel: OrderViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
+        orderViewModel = ViewModelProvider(this)[OrderViewModel::class.java]
         binding = DataBindingUtil.inflate<FragmentCartBinding?>(
             inflater, R.layout.fragment_cart, container, false
         ).apply {
             composeView.setContent {
                 CanteenM3Theme {
-                   CartDetail(cartViewModel,this@CartFragment)
+                    if (orderViewModel.isEmptyCarts){
+                        EmptyScreen("当前购物车为空！")
+                    }else{
+                        CartDetail(cartViewModel,this@CartFragment)
+                    }
+
                 }
                 cartViewModel.getAllCarts(
                     requireActivity().getPreferenceManager().getString(Constants.KEY_USER_ID)!!
@@ -40,7 +48,14 @@ class CartFragment : Fragment() {
             }
         }
         setListeners()
+        setObservers()
         return binding.root
+    }
+
+    private fun setObservers() {
+        cartViewModel.cartListLiveData.observe(viewLifecycleOwner){
+            orderViewModel.isEmptyCarts = it.isEmpty()
+        }
     }
 
     private fun setListeners(){

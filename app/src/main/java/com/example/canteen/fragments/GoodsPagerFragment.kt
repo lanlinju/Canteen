@@ -21,7 +21,7 @@ import com.example.canteen.utilities.showLogD
 import com.example.canteen.viewmodels.GoodsViewModel
 
 
-class GoodsPagerFragment(private val category: Category) : Fragment(), GoodsListener{
+class GoodsPagerFragment(private val category: Category) : Fragment(), GoodsListener {
 
     private lateinit var binding: FragmentGoodsPagerBinding
     private lateinit var goodsViewModel: GoodsViewModel
@@ -44,20 +44,20 @@ class GoodsPagerFragment(private val category: Category) : Fragment(), GoodsList
     }
 
     private fun doInitialization() {
-       // binding.goodsRecycleView.setHasFixedSize(true)
+        // binding.goodsRecycleView.setHasFixedSize(true)
         goodsViewModel = ViewModelProvider(this)[GoodsViewModel::class.java]
-        goodsAdapter = GoodsAdapter(goodsList,this)
+        goodsAdapter = GoodsAdapter(goodsList, this)
         binding.goodsRecycleView.apply {
             adapter = goodsAdapter
-            layoutManager =StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         }
         if (!isLoaded) {
             getGoodsData()
         }
     }
 
-    private fun setListeners(){
-        with( binding.swipeRefreshLayout){
+    private fun setListeners() {
+        with(binding.swipeRefreshLayout) {
             setColorSchemeResources(R.color.colorPrimary)
             setOnRefreshListener {
                 goodsList.clear()
@@ -88,15 +88,15 @@ class GoodsPagerFragment(private val category: Category) : Fragment(), GoodsList
     override fun onGoodsClicked(goods: Goods) {
         Bundle().apply {
             putParcelable("KEY_GOODS", goods)
-            putString("KEY_CATEGORY",category.cname)
-            findNavController().navigate(R.id.goodsDetailsFragment,this)
+            putString("KEY_CATEGORY", category.cname)
+            findNavController().navigate(R.id.goodsDetailsFragment, this)
         }
     }
 
     override fun onStop() {
         super.onStop()
         //goodsList.clear()//跳转到其他非viewpager fragment之后返回 会重复加载数据
-        showLogD(category.cname+"GoodsPagerFragment:onStop")
+        showLogD(category.cname + "GoodsPagerFragment:onStop")
     }
 
 }
