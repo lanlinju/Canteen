@@ -43,8 +43,8 @@ import com.example.composetutorialsample.ui.theme.LightBlue
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
 @Composable
-fun OrderDetail(orderViewModel: OrderViewModel) {
-    val orderList by orderViewModel.orderListLiveData.observeAsState()
+fun OrderDetail(orderViewModel: OrderViewModel,orderList: List<Order>?) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()

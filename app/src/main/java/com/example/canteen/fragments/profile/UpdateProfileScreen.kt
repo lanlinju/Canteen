@@ -7,6 +7,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -27,6 +28,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -87,12 +90,18 @@ fun UpdateProfileScreen(
             visualTransformation = PasswordVisualTransformation()
         )
         ProfileProperty(user.nickname, label = "昵称:", onValueChange = { user.nickname = it })
-        ProfileProperty(user.email, label = "邮箱:", onValueChange = { user.email = it })
-        ProfileProperty(user.phone, label = "手机:", onValueChange = { user.phone = it })
+        ProfileProperty(user.email, label = "邮箱:", onValueChange = { user.email = it },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next))
+        ProfileProperty(
+            user.phone,
+            label = "手机:",
+            onValueChange = { user.phone = it },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done)
+        )
         ProfileProperty("当前角色:${user.roleName}", label = "", onValueChange = { }, enabled = false)
 
         BottomButton {//更新User
-            context.getPreferenceManager().putString(Constants.KEY_IMAGE,user.image)//更新缓存在本地的照片
+            context.getPreferenceManager().putString(Constants.KEY_IMAGE, user.image)//更新缓存在本地的照片
             userViewModel.updateUser(user)
         }
     }
@@ -146,6 +155,7 @@ private fun ProfileProperty(
     label: String,
     onValueChange: (String) -> Unit,
     enabled: Boolean = true,
+    keyboardOptions: KeyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
     var value by remember { mutableStateOf(text) }
@@ -156,6 +166,7 @@ private fun ProfileProperty(
             value = it
             onValueChange(it)
         },
+        keyboardOptions = keyboardOptions,
         enabled = enabled,
         shape = RoundedCornerShape(10.dp),
         visualTransformation = visualTransformation

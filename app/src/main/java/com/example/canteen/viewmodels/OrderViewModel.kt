@@ -61,7 +61,7 @@ class OrderViewModel : ViewModel() {
                 }
             }.collect {
                 if (it?.code == 0) {
-                    updateUI(order)
+                    updateUI(order)//删除order
                     "删除成功".showLog()
                 } else {
                     "删除失败！".showToast()
@@ -71,7 +71,7 @@ class OrderViewModel : ViewModel() {
         }
     }
 
-    private fun updateUI(order: Order) {
+    private fun updateUI(order: Order) {//删除order
         val orders = _orderListLiveData.value?.toMutableList()
         orders?.remove(order)
         _orderListLiveData.value = orders!!//更新UI

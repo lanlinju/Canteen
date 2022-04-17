@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.canteen.R
+import com.example.canteen.components.EmptyScreen
 import com.example.canteen.databinding.FragmentCartBinding
 import com.example.canteen.theme.ui.CanteenM3Theme
 import com.example.canteen.utilities.Constants
@@ -40,7 +41,6 @@ class CartFragment : Fragment() {
                     }else{
                         CartDetail(cartViewModel,this@CartFragment)
                     }
-
                 }
                 cartViewModel.getAllCarts(
                     requireActivity().getPreferenceManager().getString(Constants.KEY_USER_ID)!!

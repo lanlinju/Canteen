@@ -388,16 +388,6 @@ fun GoodsImage(url: String) {
     )
 }
 
-@Composable
-fun EmptyScreen(text: String) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = text, fontSize = 16.sp)
-    }
-}
-
 @Preview(showBackground = true, widthDp = 320)
 @Composable
 fun DefaultPreview() {

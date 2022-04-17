@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.canteen.R
+import com.example.canteen.components.EmptyScreen
 import com.example.canteen.databinding.FragmentOrdersBinding
 import com.example.canteen.utilities.Constants
 import com.example.canteen.utilities.getPreferenceManager
@@ -34,8 +37,14 @@ class OrdersFragment : Fragment() {
         ).apply {
 
             composeView.setContent {
+                val orderList by orderViewModel.orderListLiveData.observeAsState()
                 CanteenTheme() {
-                    OrderDetail(orderViewModel = orderViewModel)
+                    if (orderList?.size == 0){
+                        EmptyScreen(text = "当前订单为空！")
+                    }else{
+                        OrderDetail(orderViewModel = orderViewModel, orderList = orderList)
+                    }
+
                 }
             }
 
