@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -30,6 +31,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+//        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_MASK_STATE)
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java].apply {
             userLiveData.observe(viewLifecycleOwner) {
                 it.toString().showLog()
@@ -57,4 +59,8 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroy() {
+//        requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        super.onDestroy()
+    }
 }

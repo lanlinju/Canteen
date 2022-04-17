@@ -3,6 +3,7 @@ package com.example.canteen.network
 import com.example.canteen.models.User
 import com.example.canteen.responses.BaseResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface UserApiService {
@@ -20,6 +21,9 @@ interface UserApiService {
 
     @GET("user/all")
     fun getAllUsers(): Call<BaseResponse<List<User>>>
+
+    @PUT("user")
+    suspend fun updateUser(@Body user: User): Response<BaseResponse<String>>
 
     @GET("user/userid")
     fun test(@Query("id") id: String): Call<BaseResponse<User>>

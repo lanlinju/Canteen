@@ -25,11 +25,13 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.canteen.R
 import com.example.canteen.application.App
 import java.io.ByteArrayOutputStream
+import java.io.FileNotFoundException
 
 fun Context.displayToast(message: String?) {
     Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
+@Deprecated("使用 ParseUriPath 这个类的静态方法")
 @SuppressLint("Range")
 fun Uri.toPath(context: Context): String? {
     var path = "";
@@ -55,11 +57,11 @@ fun String.showLog() {
 }
 
 fun Bitmap.encodeString(): String {
-    val previewWidth = 150
+    val previewWidth = 400
     val previewHeight = this.height * previewWidth / this.width
     val previewBitmap = Bitmap.createScaledBitmap(this, previewWidth, previewHeight, false)
     val byteArrayOutputStream = ByteArrayOutputStream()
-    previewBitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream)
+    previewBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
     val bytes = byteArrayOutputStream.toByteArray()
     return Base64.encodeToString(bytes, Base64.DEFAULT)
 }
@@ -88,6 +90,23 @@ fun Context.getPreferenceManager(): PreferenceManager {
     return PreferenceManager(this)
 }
 
+fun Context.isAuthorized(): Boolean {
+    val userName = getPreferenceManager().getString(Constants.KEY_ROSE_NAME)
+    return Constants.KEY_ROSE_SYSTEM == userName
+}
+
+fun Context.uriEncodeBitmapString(uri: Uri): String {
+    var result = ""
+    try {
+        val inputStream = contentResolver.openInputStream(uri)
+        val bitmap = BitmapFactory.decodeStream(inputStream)
+        result = bitmap.encodeString()
+    } catch (e: FileNotFoundException) {
+        e.printStackTrace()
+    }
+    return result
+}
+
 /**
  * 单选对话框
  */
@@ -106,7 +125,8 @@ fun Context.singleChoiceDialog(
         "确认"
     ) { dialog, _ ->
         OnCheckedListener(checkedItem)
-        dialog.dismiss() }
+        dialog.dismiss()
+    }
     builder.setNegativeButton(
         "取消"
     ) { dialog, _ -> dialog.dismiss() }

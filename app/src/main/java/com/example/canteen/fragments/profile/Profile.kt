@@ -16,84 +16,110 @@
 
 package com.example.canteen.fragments
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.BottomDrawer
+import androidx.compose.material.BottomDrawerValue
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.MoreVert
+import androidx.compose.material.rememberBottomDrawerState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.canteen.R
 import com.example.canteen.components.FunctionalityNotAvailablePopup
 import com.example.canteen.components.baselineHeight
 import com.example.canteen.fragments.profile.CanteenAppBar
+import com.example.canteen.fragments.profile.UpdateProfileScreen
 import com.example.canteen.models.User
 import com.example.canteen.utilities.toBitmap
 import com.example.canteen.viewmodels.CartViewModel
+import kotlinx.coroutines.launch
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun ProfileScreen(userData: User) {
-
-    var functionalityNotAvailablePopupShown by remember { mutableStateOf(false) }
-    if (functionalityNotAvailablePopupShown) {
-        FunctionalityNotAvailablePopup { functionalityNotAvailablePopupShown = false }
-    }
-
+    var expanded by remember { mutableStateOf(false) }
+    val drawerState = rememberBottomDrawerState(BottomDrawerValue.Closed)
+    val scope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
     val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .nestedScroll(scrollBehavior.nestedScrollConnection)
+    BottomDrawer(
+        drawerContent = {
+            UpdateProfileScreen(
+                userData,
+                scope = scope,
+                drawerState = drawerState)
+        },
+        drawerState = drawerState,
+        gesturesEnabled = true,
     ) {
-        CanteenAppBar(
-            scrollBehavior = scrollBehavior,
-            onNavIconPressed = {},
-            title = { },
-            actions = {
-                Icon(
-                    imageVector = Icons.Outlined.MoreVert,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .nestedScroll(scrollBehavior.nestedScrollConnection)
+        ) {
+            CanteenAppBar(
+                scrollBehavior = scrollBehavior,
+                onNavIconPressed = {},
+                title = { Text(text = "个人信息", fontSize = 16.sp) },
+                actions = {
+                    Icon(
+                        imageVector = Icons.Outlined.MoreVert,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier
+                            .clickable(onClick = { expanded = true })
+                            .padding(horizontal = 12.dp, vertical = 16.dp)
+                            .height(24.dp),
+                        contentDescription = "更多选项"
+                    )
+                    DropdownMenu(
+                        expanded = expanded,
+//                        modifier = Modifier.background(Color.White),
+                        onDismissRequest = { expanded = false }) {
+                        DropdownMenuItem(
+                            text = { Text(text = "编辑") },
+                            onClick = {
+                                expanded = false
+                                scope.launch { drawerState.expand() }
+                            }
+
+                        )
+                    }
+                }
+            )
+            Surface() {
+                Column(
                     modifier = Modifier
-                        .clickable(onClick = { functionalityNotAvailablePopupShown = true })
-                        .padding(horizontal = 12.dp, vertical = 16.dp)
-                        .height(24.dp),
-                    contentDescription = "更多选项"
-                )
-            }
-        )
-        Surface() {
-            Column(
-                modifier = Modifier
-                    .verticalScroll(scrollState)
-                    .fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
+                        .verticalScroll(scrollState)
+                        .fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
 
-                ProfileHeader(
-                    userData,
-                )
-                UserInfoFields(userData)
+                    ProfileHeader(
+                        userData,
+                    )
+                    UserInfoFields(userData)
+                }
             }
+
         }
-
     }
+
 }
 
 @Composable
@@ -184,14 +210,12 @@ fun ProfileProperty(label: String, value: String, isLink: Boolean = false) {
 private fun ProfileHeader(
     data: User,
 ) {
-    data.image?.let {
-        Image(
-            bitmap = it.toBitmap().asImageBitmap(),
-            modifier = Modifier
-                .size(128.dp)
-                .clip(CircleShape), contentDescription = null
-        )
-    }
+    Image(
+        bitmap = data.image.toBitmap().asImageBitmap(),
+        modifier = Modifier
+            .size(128.dp)
+            .clip(CircleShape), contentDescription = null
+    )
 }
 
 @Composable

@@ -7,7 +7,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.canteen.models.User
 import com.example.canteen.respositories.UserRepository
+import com.example.canteen.utilities.showLog
+import com.example.canteen.utilities.showToast
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectIndexed
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 
@@ -25,6 +29,25 @@ class UserViewModel : ViewModel() {
 
     fun getAllUsers() {
         userRepository.getAllUsers()
+    }
+
+    fun updateUser(user: User) {
+        viewModelScope.launch {
+            flow {
+                try {
+                    val info = userRepository.updateUser(user)
+                    emit(info)
+                } catch (e: Exception) {
+                    e.message?.showToast()
+                }
+            }.collect {
+                if (it?.code == 0) {
+                    "更新成功".showToast()
+                } else {
+                    "更新失败".showToast()
+                }
+            }
+        }
     }
 
     fun toggleProgressBarVisibility() {

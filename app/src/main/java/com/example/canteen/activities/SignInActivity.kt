@@ -67,8 +67,7 @@ class SignInActivity : AppCompatActivity() {
         ).observe(this) { baseResponse ->
             loading(false)
             if (baseResponse.code == 404) {
-                showDialog(baseResponse.msg) {
-                }
+                showDialog(baseResponse.msg, onClick = {})
                 return@observe
             }
             if (baseResponse.code == -1) {

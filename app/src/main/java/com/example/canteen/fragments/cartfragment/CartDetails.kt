@@ -118,7 +118,6 @@ fun CartDetail(cartViewModel: CartViewModel, fragment: CartFragment) {
                 orderViewModel.insertOrder(it)
             }
         }
-
     )
 
 

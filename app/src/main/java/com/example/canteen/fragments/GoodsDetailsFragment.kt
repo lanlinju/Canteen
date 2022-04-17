@@ -108,8 +108,10 @@ class GoodsDetailsFragment : Fragment() {
                 if (requireContext().getPreferenceManager()
                         .getString(Constants.KEY_ROSE_NAME)!! == Constants.KEY_ROSE_SYSTEM
                 ) {//删除goods
-                    binding.progressBar.show()
-                    goodsViewModel.deleteGoods(goodsDetails)
+                    requireContext().showDialog("确定要删除吗？"){
+                        binding.progressBar.show()
+                        goodsViewModel.deleteGoods(goodsDetails)
+                    }
                 } else {
                     getString(R.string.less_authority).showToast()
                 }
