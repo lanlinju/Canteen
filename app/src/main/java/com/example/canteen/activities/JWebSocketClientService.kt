@@ -49,10 +49,9 @@ class JWebSocketClientService : LifecycleService() {
             )
         )
         client = object : JWebSocketClient(uri) {
-            override fun onMessage(message: String?) {
-                lifecycleScope.launch {
-                    _chatMessage.value = Gson().fromJson(message, Chat::class.java)
-                }
+            //创建
+            override fun onMessage(message: String?) {//接收聊天信息 监听
+                _chatMessage.postValue(Gson().fromJson(message, Chat::class.java))
 
             }
         }
@@ -66,6 +65,19 @@ class JWebSocketClientService : LifecycleService() {
 
     }
 
+    fun connectWebSocket() {//退出账号重新连接
+        if (client == null) {
+            initSocketClient()//重新连接
+            return
+        }
+        client?.let {
+            if (it.isClosed) {
+                initSocketClient()//重新连接
+            }
+        }
+
+    }
+
     /**
      * 发送消息
      *
@@ -75,7 +87,7 @@ class JWebSocketClientService : LifecycleService() {
         Log.e("JWebSocketClientService", "发送的消息：$msg")
         try {
             client?.send(msg)
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.message?.showToast()
         }
 
@@ -84,7 +96,7 @@ class JWebSocketClientService : LifecycleService() {
     /**
      * 断开连接
      */
-    private fun closeConnect() {
+    fun closeConnect() {
         client?.close()
     }
 }

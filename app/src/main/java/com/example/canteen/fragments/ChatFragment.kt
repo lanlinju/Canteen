@@ -22,14 +22,14 @@ import com.google.gson.Gson
 import java.util.*
 
 
-class ChatFragment : Fragment(){
+class ChatFragment : Fragment() {
     private lateinit var binding: FragmentChatBinding
     private lateinit var chatViewModel: ChatViewModel
     private lateinit var conversationViewModel: ConversationViewModel
     private lateinit var chatMessages: MutableList<Chat>
     private lateinit var chatAdapter: ChatAdapter
     private lateinit var preferenceManager: PreferenceManager
-    private  var conversationId: String? = null
+    private var conversationId: String? = null
     private lateinit var receiverUser: User
 
     override fun onCreateView(
@@ -54,7 +54,7 @@ class ChatFragment : Fragment(){
         preferenceManager.getString(Constants.KEY_USER_ID)?.let {
             chatViewModel.getMessagesById(it, receiverUser.id)
         }
-
+        (requireActivity() as MainActivity).socketService.connectWebSocket()//判断如果是切换账号 重新连接
     }
 
     private fun init() {
@@ -91,13 +91,14 @@ class ChatFragment : Fragment(){
                 }
             }
         }//监听服务发来的消息
-        (requireActivity() as MainActivity).socketService.chatMessage.observe(viewLifecycleOwner){
+        (requireActivity() as MainActivity).socketService.chatMessage.observe(viewLifecycleOwner) {
+            it.toString().showLog()
             chatMessages.add(it)
             chatAdapter.notifyItemRangeInserted(chatMessages.size, chatMessages.size) //插入新的的数据
             binding.chatRecyclerView.smoothScrollToPosition(chatMessages.size - 1) //设置滚动到末尾的位置
         }
-        with(conversationViewModel){//获取会话id
-            conversationIdLive.observe(viewLifecycleOwner){
+        with(conversationViewModel) {//获取会话id
+            conversationIdLive.observe(viewLifecycleOwner) {
                 conversationId = it
             }
         }
@@ -109,28 +110,37 @@ class ChatFragment : Fragment(){
         binding.layoutSent.setOnClickListener { v -> sendMessage() }
     }
 
-    private fun sendMessage() {
+    private fun sendMessage() {//发送信息
         val message = Chat(
             receiverId = receiverUser.id,
             senderId = requireActivity().getPreferenceManager().getString(Constants.KEY_USER_ID)!!,
             message = binding.inputMessage.text.toString(),
             dateTime = Date()
         )
-        (requireActivity() as MainActivity).socketService.sendMessage(Gson().toJson(message))
+        with((requireActivity() as MainActivity).socketService) {
+//            connectWebSocket()//判断如果是切换账号 重新连接
+            sendMessage(Gson().toJson(message))
+        }
         chatViewModel.insertChat(message)
-        if(conversationId != null){//更新最新消息
-            conversationViewModel.updateLastMessage(conversationId!!, binding.inputMessage.text.toString(),Date())
-        }else{//添加一个新会话
-            conversationViewModel.insertConversion(Conversation(
-                lastMessage =  binding.inputMessage.text.toString(),
-                sendId = preferenceManager.getString(Constants.KEY_USER_ID)!!,
-                sendName = preferenceManager.getString(Constants.KEY_NAME)!!,
-                sendImage = preferenceManager.getString(Constants.KEY_IMAGE)!!,
-                receiverId = receiverUser.id,
-                receiverName = receiverUser.name,
-                receiverImage = receiverUser.image,
-                dateTime = Date()
-            ))
+        if (conversationId != null) {//更新最新消息
+            conversationViewModel.updateLastMessage(
+                conversationId!!,
+                binding.inputMessage.text.toString(),
+                Date()
+            )
+        } else {//添加一个新会话
+            conversationViewModel.insertConversion(
+                Conversation(
+                    lastMessage = binding.inputMessage.text.toString(),
+                    sendId = preferenceManager.getString(Constants.KEY_USER_ID)!!,
+                    sendName = preferenceManager.getString(Constants.KEY_NAME)!!,
+                    sendImage = preferenceManager.getString(Constants.KEY_IMAGE)!!,
+                    receiverId = receiverUser.id,
+                    receiverName = receiverUser.name,
+                    receiverImage = receiverUser.image,
+                    dateTime = Date()
+                )
+            )
             checkForConversion()
         }
         binding.inputMessage.text = null

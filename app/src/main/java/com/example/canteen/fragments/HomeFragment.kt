@@ -134,9 +134,10 @@ class HomeFragment : Fragment() {
         binding.inputSearch.setOnClickListener {
             findNavController().navigate(R.id.searchFragment)
         }
-        binding.imageSignOut.setOnClickListener {
+        binding.imageSignOut.setOnClickListener {//账号退出
             requireContext().showDialog(getString(R.string.text_message_logout)) {
                 preferenceManager.clear()
+                (requireActivity() as MainActivity).socketService.closeConnect()//关闭websocket连接
                 startActivity(Intent(requireContext(), SignInActivity::class.java))
                 onDestroy()
             }

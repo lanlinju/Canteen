@@ -18,5 +18,4 @@ data class Goods(
     @SerializedName("dangerNum") var dangerNum: Int = 0,
     @SerializedName("number") var number: String = "",
     @SerializedName("place") var place: String = "",
-    @SerializedName("providerId") val providerId: Int = 0,
 ) : Parcelable

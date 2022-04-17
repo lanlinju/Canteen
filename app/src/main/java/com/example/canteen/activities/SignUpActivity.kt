@@ -69,7 +69,7 @@ class SignUpActivity : AppCompatActivity() {
             loading(false)
             if (it != null && -1 != it.code) {
                 preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true)
-                preferenceManager.putString(Constants.KEY_USER_ID, user.id)
+                preferenceManager.putString(Constants.KEY_USER_ID, it.data)//来自注册成功user后端的id
                 preferenceManager.putString(Constants.KEY_NAME, user.name)
                 preferenceManager.putString(Constants.KEY_EMAIL, user.email)
                 preferenceManager.putString(Constants.KEY_IMAGE, user.image)
