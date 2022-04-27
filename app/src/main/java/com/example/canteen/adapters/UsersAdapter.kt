@@ -36,6 +36,9 @@ class UsersAdapter(val userListener: UserListener) :ListAdapter<User,UsersAdapte
             binding.root.setOnClickListener{
                 userListener.onUserClicked(user)
             }
+            binding.imageProfile.setOnClickListener {
+                userListener.onUserImageClicked(user.id)
+            }
         }
     }
 

@@ -27,4 +27,7 @@ interface UserApiService {
 
     @GET("user/userid")
     fun test(@Query("id") id: String): Call<BaseResponse<User>>
+
+    @DELETE("user/{id}")
+    suspend fun deleteUser(@Path("id") id:String):Response<BaseResponse<String>>
 }

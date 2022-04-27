@@ -29,7 +29,7 @@
                 android:layout_height="@dimen/_25sdp"
                 android:layout_marginStart="@dimen/_4sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_back"
+                android:src="@drawable/ic_back_arrow"
                 app:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

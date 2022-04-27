@@ -43,15 +43,16 @@ fun CanteenIcon(
         Modifier
     }
     Box(modifier = modifier.then(semantics)) {
-        Icon(
-            painter = painterResource(id = R.drawable.ic_canteen_back),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.primaryContainer
-        )
-        Icon(
-            painter = painterResource(id = R.drawable.ic_canteen_front),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary
-        )
+        Icon(painter = painterResource(id = R.drawable.ic_back_arrow), contentDescription = "")
+//        Icon(
+//            painter = painterResource(id = R.drawable.ic_canteen_back),
+//            contentDescription = null,
+//            tint = MaterialTheme.colorScheme.primaryContainer
+//        )
+//        Icon(
+//            painter = painterResource(id = R.drawable.ic_canteen_front),
+//            contentDescription = null,
+//            tint = MaterialTheme.colorScheme.primary
+//        )
     }
 }

@@ -134,7 +134,7 @@ fun Context.singleChoiceDialog(
     dialog.show() //显示对话框
 }
 
-fun Context.showDialog(message: String, onClick: (view: View) -> Unit) {
+fun Context.showDialog(message: String, onDismiss:()->Unit={},onClick: (view: View) -> Unit) {
     val builder = AlertDialog.Builder(this)
     val view: View = LayoutInflater.from(this).inflate(
         R.layout.layout_alert_dialog,
@@ -151,7 +151,10 @@ fun Context.showDialog(message: String, onClick: (view: View) -> Unit) {
         alertDialog.dismiss()
     }
     view.findViewById<View>(R.id.textCancel)
-        .setOnClickListener { alertDialog.dismiss() }
+        .setOnClickListener {
+        onDismiss()
+            alertDialog.dismiss()
+        }
     alertDialog.show()
 }
 

@@ -7,9 +7,9 @@
         android:title="@string/home" />
 
     <item
-        android:id="@+id/cartFragment"
-        android:icon="@drawable/ic_cart"
-        android:title="@string/cart" />
+        android:id="@+id/ordersFragment"
+        android:icon="@drawable/ic_saved"
+        android:title="@string/orders" />
 
     <item
         android:id="@+id/conversationsFragment"
@@ -17,9 +17,9 @@
         android:title="@string/chat" />
 
     <item
-        android:id="@+id/ordersFragment"
-        android:icon="@drawable/ic_saved"
-        android:title="@string/orders" />
+        android:id="@+id/cartFragment"
+        android:icon="@drawable/ic_cart"
+        android:title="@string/cart" />
 
     <item
         android:id="@+id/profileFragment"

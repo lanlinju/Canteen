@@ -120,6 +120,21 @@
                     app:layout_constraintTop_toBottomOf="@id/textName" />
 
                 <TextView
+                    android:id="@+id/textPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text='@{"价格: ¥" + goods.price}'
+                    android:textColor="@color/colorPink"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@id/textPlace"
+                    app:layout_constraintStart_toStartOf="@id/textPlace"
+                    app:layout_constraintTop_toBottomOf="@id/textPlace" />
+
+                <TextView
                     android:id="@+id/textNumber"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -130,9 +145,9 @@
                     android:text='@{"数量: " + goods.number}'
                     android:textColor="@android:color/holo_green_light"
                     android:textSize="@dimen/_12ssp"
-                    app:layout_constraintEnd_toEndOf="@id/textName"
-                    app:layout_constraintStart_toStartOf="@id/textName"
-                    app:layout_constraintTop_toBottomOf="@id/textPlace" />
+                    app:layout_constraintEnd_toEndOf="@id/textPrice"
+                    app:layout_constraintStart_toStartOf="@id/textPrice"
+                    app:layout_constraintTop_toBottomOf="@id/textPrice" />
 
                 <TextView
                     android:id="@+id/textStarted"

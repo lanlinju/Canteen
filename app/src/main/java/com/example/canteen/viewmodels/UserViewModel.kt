@@ -50,6 +50,25 @@ class UserViewModel : ViewModel() {
         }
     }
 
+    fun deleteUser(id:String)  {
+        viewModelScope.launch {
+            flow {
+                try {
+                    val info =  userRepository.deleteUser(id)
+                    emit(info)
+                } catch (e: Exception) {
+                    e.message?.showToast()
+                }
+            }.collect {
+                if (it?.data == "1") {
+                    "删除成功".showToast()
+                } else {
+                    "删除失败".showToast()
+                }
+            }
+        }
+    }
+
     fun toggleProgressBarVisibility() {
         if (_progressBarVisibility.value == View.INVISIBLE) {
             _progressBarVisibility.value = View.VISIBLE

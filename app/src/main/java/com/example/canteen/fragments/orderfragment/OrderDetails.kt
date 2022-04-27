@@ -43,7 +43,7 @@ import com.example.composetutorialsample.ui.theme.LightBlue
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
 @Composable
-fun OrderDetail(orderViewModel: OrderViewModel,orderList: List<Order>?) {
+fun OrderDetail(orderViewModel: OrderViewModel,orderList: List<Order>) {
 
     Column(
         modifier = Modifier
@@ -51,12 +51,11 @@ fun OrderDetail(orderViewModel: OrderViewModel,orderList: List<Order>?) {
             .padding(8.dp)
             .background(colorResource(id = R.color.background))
     ) {
-        orderList?.let {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                items(items = it, key = { it.id!!}) { order ->
+                items(items = orderList, key = { it.id!!}) { order ->
                     //滑动删除
                     val dismissState = rememberDismissState()
                     if (dismissState.isDismissed(DismissDirection.EndToStart)) {
@@ -70,7 +69,7 @@ fun OrderDetail(orderViewModel: OrderViewModel,orderList: List<Order>?) {
                     )
                 }
             }
-        }
+
     }
 }
 

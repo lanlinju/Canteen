@@ -38,7 +38,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:riv_corner_radius="@dimen/_4sdp" />
+                app:riv_corner_radius_top_left="@dimen/_4sdp"
+                app:riv_corner_radius_top_right="@dimen/_4sdp" />
 
             <TextView
                 android:id="@+id/textName"
@@ -49,21 +50,32 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@{goods.name}"
-                android:textColor="@color/secondary_label"
+                android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/_10ssp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/imageGoods" />
 
             <TextView
+                android:id="@+id/textSymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_1sdp"
+                android:text="¥"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@id/textPrice"
+                app:layout_constraintStart_toStartOf="@id/textName" />
+
+            <TextView
                 android:id="@+id/textPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2sdp"
+                android:paddingStart="@dimen/_2sdp"
                 android:text="@{goods.price}"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_14ssp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/textName"
+                app:layout_constraintStart_toEndOf="@id/textSymbol"
                 app:layout_constraintTop_toBottomOf="@id/textName" />
 
             <androidx.appcompat.widget.AppCompatImageView

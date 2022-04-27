@@ -177,7 +177,7 @@ class GoodsDetailsFragment : Fragment() {
             }
         }
 
-    private fun showBottomSheetDialog() {//显示添加物品页面
+    private fun showBottomSheetDialog() {//显示更新物品页面
         if (goodsBottomSheetDialog == null) {
             goodsBottomSheetDialog = BottomSheetDialog(requireContext())
             layoutGoodsBottomSheetBinding = DataBindingUtil.inflate(

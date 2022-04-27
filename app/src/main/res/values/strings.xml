@@ -69,5 +69,6 @@
     <string name="update_goods_details">更新货物信息</string>
     <string name="success">成功</string>
     <string name="failed">失败</string>
+    <string name="user_list">用户列表</string>
 
 </resources>

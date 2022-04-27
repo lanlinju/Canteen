@@ -36,12 +36,16 @@ class ProfileFragment : Fragment() {
             userLiveData.observe(viewLifecycleOwner) {
                 it.toString().showLog()
             }
-            if (!isLoaded) {
-                isLoaded = true
-                requireActivity().getPreferenceManager().getString(Constants.KEY_USER_ID)
-                    ?.let { getUserById(it) }
+            val userId = arguments?.getString("KEY_USER_ID")
+            if (userId != null) {
+                getUserById(userId)//管理员查看用户信息
+            } else {
+                if (!isLoaded) {//
+                    isLoaded = true
+                    requireActivity().getPreferenceManager().getString(Constants.KEY_USER_ID)
+                        ?.let { getUserById(it) }//个人查看简介
+                }
             }
-
         }
         val binding = DataBindingUtil.inflate<FragmentProfileBinding>(
             inflater, R.layout.fragment_profile, container, false
@@ -50,7 +54,7 @@ class ProfileFragment : Fragment() {
                 val userData by userViewModel.userLiveData.observeAsState()
                 CanteenM3Theme {
                     userData?.let {
-                        ProfileScreen(it)
+                        ProfileScreen(it, onBackPressed = {requireActivity().onBackPressed()})
                     }
                 }
             }

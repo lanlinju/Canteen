@@ -4,4 +4,6 @@ import com.example.canteen.models.User
 
 interface UserListener {
     fun onUserClicked(user:User)
+
+    fun onUserImageClicked(id:String)
 }

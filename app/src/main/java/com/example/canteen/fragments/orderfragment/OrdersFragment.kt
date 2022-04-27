@@ -39,11 +39,14 @@ class OrdersFragment : Fragment() {
             composeView.setContent {
                 val orderList by orderViewModel.orderListLiveData.observeAsState()
                 CanteenTheme() {
-                    if (orderList?.size == 0){
-                        EmptyScreen(text = "当前订单为空！")
-                    }else{
-                        OrderDetail(orderViewModel = orderViewModel, orderList = orderList)
+                    orderList?.let {
+                        if (orderList!!.isEmpty()){
+                            EmptyScreen(text = "当前订单为空！")
+                        }else{
+                            OrderDetail(orderViewModel = orderViewModel, orderList = orderList!!)
+                        }
                     }
+
 
                 }
             }

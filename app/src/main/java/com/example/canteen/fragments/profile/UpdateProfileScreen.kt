@@ -7,6 +7,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -42,10 +43,7 @@ import com.example.canteen.R
 import com.example.canteen.fragments.ProfileProperty
 import com.example.canteen.models.User
 import com.example.canteen.theme.ui.CanteenM3Theme
-import com.example.canteen.utilities.Constants
-import com.example.canteen.utilities.getPreferenceManager
-import com.example.canteen.utilities.toBitmap
-import com.example.canteen.utilities.uriEncodeBitmapString
+import com.example.canteen.utilities.*
 import com.example.canteen.viewmodels.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
@@ -85,18 +83,28 @@ fun UpdateProfileScreen(
         }
 
         ProfileProperty(user.name, label = "姓名:", onValueChange = { user.name = it })
+        user.password = "123456"//TODO(密码修改待优化)
         ProfileProperty(
-            user.password, label = "密码:", onValueChange = { user.password = it },
-            visualTransformation = PasswordVisualTransformation()
+            user.password , label = "密码:", onValueChange = { user.password = it },
+            visualTransformation = PasswordVisualTransformation(),
+            IsCleared = { true }
         )
         ProfileProperty(user.nickname, label = "昵称:", onValueChange = { user.nickname = it })
-        ProfileProperty(user.email, label = "邮箱:", onValueChange = { user.email = it },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email, imeAction = ImeAction.Next))
+        ProfileProperty(
+            user.email, label = "邮箱:", onValueChange = { user.email = it },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Next
+            )
+        )
         ProfileProperty(
             user.phone,
             label = "手机:",
             onValueChange = { user.phone = it },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done)
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done
+            )
         )
         ProfileProperty("当前角色:${user.roleName}", label = "", onValueChange = { }, enabled = false)
 
@@ -121,6 +129,7 @@ fun BottomButton(onClick: () -> Unit) {
     ) {
         Text(text = "更新")
     }
+    Spacer(modifier = Modifier.height(10.dp))
 }
 
 @Composable
@@ -155,6 +164,9 @@ private fun ProfileProperty(
     label: String,
     onValueChange: (String) -> Unit,
     enabled: Boolean = true,
+    IsCleared: () -> Boolean = { false },
+    maxLines: Int = Int.MAX_VALUE,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
     keyboardOptions: KeyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
@@ -166,7 +178,14 @@ private fun ProfileProperty(
             value = it
             onValueChange(it)
         },
+        modifier = Modifier.clickable {
+            if (IsCleared()) {
+                value = ""
+            }
+        },
+        maxLines = maxLines,
         keyboardOptions = keyboardOptions,
+        keyboardActions = keyboardActions,
         enabled = enabled,
         shape = RoundedCornerShape(10.dp),
         visualTransformation = visualTransformation

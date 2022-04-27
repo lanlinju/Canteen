@@ -75,6 +75,9 @@ class OrderViewModel : ViewModel() {
         val orders = _orderListLiveData.value?.toMutableList()
         orders?.remove(order)
         _orderListLiveData.value = orders!!//更新UI
+//        _orderListLiveData.value?.filter { it->
+//            order != it
+//        }
     }
 }
 

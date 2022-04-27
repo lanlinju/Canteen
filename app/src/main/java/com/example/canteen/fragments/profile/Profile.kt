@@ -34,6 +34,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -51,7 +52,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
-fun ProfileScreen(userData: User) {
+fun ProfileScreen(userData: User,onBackPressed:()->Unit) {
     var expanded by remember { mutableStateOf(false) }
     val drawerState = rememberBottomDrawerState(BottomDrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -62,7 +63,8 @@ fun ProfileScreen(userData: User) {
             UpdateProfileScreen(
                 userData,
                 scope = scope,
-                drawerState = drawerState)
+                drawerState = drawerState
+            )
         },
         drawerState = drawerState,
         gesturesEnabled = true,
@@ -74,7 +76,9 @@ fun ProfileScreen(userData: User) {
         ) {
             CanteenAppBar(
                 scrollBehavior = scrollBehavior,
-                onNavIconPressed = {},
+                onNavIconPressed = {
+                    onBackPressed()
+                },
                 title = { Text(text = "个人信息", fontSize = 16.sp) },
                 actions = {
                     Icon(
@@ -212,9 +216,9 @@ private fun ProfileHeader(
 ) {
     Image(
         bitmap = data.image.toBitmap().asImageBitmap(),
-        modifier = Modifier
-            .size(128.dp)
-            .clip(CircleShape), contentDescription = null
+        modifier = Modifier.size(128.dp).clip(CircleShape),
+        contentScale = ContentScale.Crop,
+        contentDescription = null
     )
 }
 

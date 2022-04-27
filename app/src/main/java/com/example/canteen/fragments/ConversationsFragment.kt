@@ -141,11 +141,11 @@ class ConversationsFragment : Fragment(), ConversionListener {
                     )
                     if (preferenceManager.getString(Constants.KEY_USER_ID)
                             .equals(senderId)
-                    ) {
+                    ) { //获取对方信息 如果对面先发的信息 对方的ID 为 senderId
                         tempConversation.conversionId = conversation.receiverId
                         tempConversation.conversionName = conversation.receiverName
                         tempConversation.conversionImage = conversation.receiverImage
-                    } else { //获取对方信息 如果对面先发的信息 对方的ID 为 senderId
+                    } else {
                         tempConversation.conversionId = conversation.sendId
                         tempConversation.conversionName = conversation.sendName
                         tempConversation.conversionImage = conversation.sendImage

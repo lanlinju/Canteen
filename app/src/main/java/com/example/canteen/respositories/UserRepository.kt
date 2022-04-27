@@ -73,4 +73,16 @@ class UserRepository {
             }
         }
     }
+
+    suspend fun deleteUser(id: String): BaseResponse<String>? {
+        return withContext(Dispatchers.IO) {
+            val result = userApiService.deleteUser(id)
+            if (result.isSuccessful) {
+                return@withContext result.body()
+            } else {
+                val errorMessage = "出错了，状态码：${result.code()},信息：${result.message()}"
+                throw Exception(errorMessage)
+            }
+        }
+    }
 }
