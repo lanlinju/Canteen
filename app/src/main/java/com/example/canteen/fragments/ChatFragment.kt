@@ -47,6 +47,7 @@ class ChatFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         loadReceiverDetails()
         setObservers()
         setListeners()
@@ -93,9 +94,11 @@ class ChatFragment : Fragment() {
         }//监听服务发来的消息
         (requireActivity() as MainActivity).socketService.chatMessage.observe(viewLifecycleOwner) {
             it.toString().showLog()
-            chatMessages.add(it)
-            chatAdapter.notifyItemRangeInserted(chatMessages.size, chatMessages.size) //插入新的的数据
-            binding.chatRecyclerView.smoothScrollToPosition(chatMessages.size - 1) //设置滚动到末尾的位置
+            if (it.id != "-1" ){//修复livedata的粘性事件导致消息被其他会话重复接收到
+                chatMessages.add(it)
+                chatAdapter.notifyItemRangeInserted(chatMessages.size, chatMessages.size) //插入新的的数据
+                binding.chatRecyclerView.smoothScrollToPosition(chatMessages.size - 1) //设置滚动到末尾的位置
+            }
         }
         with(conversationViewModel) {//获取会话id
             conversationIdLive.observe(viewLifecycleOwner) {
@@ -166,7 +169,9 @@ class ChatFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        (requireActivity() as MainActivity).binding.smoothBottomBar.visibility = View.VISIBLE
+        (requireActivity() as MainActivity).binding.smoothBottomBar.visibility = View.VISIBLE//修复livedata的粘性事件导致被其他会话接收到
+        val nullChat = Chat(id = "-1",receiverId = "1111", senderId = "2222", message = "3333", dateTime = Date())
+        (requireActivity() as MainActivity).socketService._chatMessage.postValue(nullChat)
         super.onDestroy()
     }
 }

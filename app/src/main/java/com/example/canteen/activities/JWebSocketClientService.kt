@@ -21,7 +21,7 @@ import java.net.URI
 
 class JWebSocketClientService : LifecycleService() {
     private var client: JWebSocketClient? = null
-    private val _chatMessage: MutableLiveData<Chat> = MutableLiveData()
+     val _chatMessage: MutableLiveData<Chat> = MutableLiveData()
     val chatMessage: LiveData<Chat> get() = _chatMessage
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -51,8 +51,8 @@ class JWebSocketClientService : LifecycleService() {
         client = object : JWebSocketClient(uri) {
             //创建
             override fun onMessage(message: String?) {//接收聊天信息 监听
-                _chatMessage.postValue(Gson().fromJson(message, Chat::class.java))
-
+                val chat = Gson().fromJson(message, Chat::class.java)
+                _chatMessage.postValue(chat)
             }
         }
         client?.connect()
