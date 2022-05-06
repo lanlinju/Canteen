@@ -70,5 +70,7 @@
     <string name="success">成功</string>
     <string name="failed">失败</string>
     <string name="user_list">用户列表</string>
+    <string name="delete_conversation">确定删除这个会话吗</string>
+    <string name="delete_user">确定删除这个用户吗</string>
 
 </resources>

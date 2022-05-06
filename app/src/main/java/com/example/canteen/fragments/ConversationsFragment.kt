@@ -75,9 +75,14 @@ class ConversationsFragment : Fragment(), ConversionListener {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                conversationViewModel.deleteConversation(conversions[viewHolder.adapterPosition].id!!)//滑动删除
-                conversions.removeAt(viewHolder.adapterPosition)
-                recentConversationAdapter.notifyItemRemoved(viewHolder.adapterPosition)
+                requireContext().showDialog(getString(R.string.delete_conversation), onDismiss = {
+                    recentConversationAdapter.notifyItemChanged(viewHolder.adapterPosition)
+                }) {
+                    conversationViewModel.deleteConversation(conversions[viewHolder.adapterPosition].id!!)//滑动删除
+                    conversions.removeAt(viewHolder.adapterPosition)
+                    recentConversationAdapter.notifyItemRemoved(viewHolder.adapterPosition)
+                }
+
             }
 
             //在滑动的时候，画出浅灰色背景和垃圾桶图标，增强删除的视觉效果

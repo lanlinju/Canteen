@@ -82,7 +82,7 @@ class UserFragment : Fragment(), UserListener {
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 if (requireContext().isAuthorized()) {//管理员权限才可以删除
-                    requireContext().showDialog("确定删除这个用户吗", onDismiss = {
+                    requireContext().showDialog(getString(R.string.delete_user), onDismiss = {
                         usersAdapter.notifyItemChanged(viewHolder.adapterPosition)
                     }) {
                          userViewModel.deleteUser(users[viewHolder.adapterPosition].id)
