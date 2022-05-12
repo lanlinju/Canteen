@@ -2,15 +2,19 @@
     <h1>餐厅仓库管理系统</h1>
     <a href="https://img.shields.io/badge/Android-8.0%20or%20above-brightgreen" style="text-decoration:none" >
             <img src="https://img.shields.io/badge/Android-8.0%20or%20above-brightgreen" alt="Android version"/>
+    </a> 
+    <a href="https://github.com/Jonas-Yuno/Canteen/releases/tag/1.0.0" style="text-decoration:none" >
+            <img src="https://img.shields.io/badge/release-v1.0.0-blue" alt="GitHub all downloads"/>
     </a>
     <a href="https://github.com/Jonas-Yuno/Canteen/blob/master/LICENSE" style="text-decoration:none" >
             <img src="https://img.shields.io/badge/licence-GPL--3.0-orange" alt="GitHub license"/>
     </a>
 	<p>
-        毕设作品，基于Android客户端的餐厅仓库管理系统的设计与实现，免费开源，目的是分享学习Android开发，最低支持Android8及以上。
+        基于Android客户端的餐厅仓库管理系统的设计与实现，免费开源，目的是分享学习Android开发，最低支持Android8及以上。
     </p>
 </div>
-另见 [后端代码](https://github.com/Jonas-Yuno/canteenService)
+
+另见  [后端代码](https://github.com/Jonas-Yuno/canteenService/)
 
 ## 基本功能实现
 1. 用户登录注册功能
@@ -18,7 +22,7 @@
 3. 查看订单功能
 4. 即时聊天功能
 5. 进货管理功能
-6. 工作人员管理功能
+6. 人员管理功能
 7. 货物搜索功能
 8. 个人信息管理功能
 ## 应用截图
