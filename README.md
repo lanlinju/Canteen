@@ -3,6 +3,9 @@
     <a href="https://img.shields.io/badge/Android-8.0%20or%20above-brightgreen" style="text-decoration:none" >
             <img src="https://img.shields.io/badge/Android-8.0%20or%20above-brightgreen" alt="Android version"/>
     </a>
+    <a href="https://github.com/Jonas-Yuno/Canteen/blob/master/LICENSE" style="text-decoration:none" >
+            <img src="https://img.shields.io/badge/licence-GPL--3.0-orange" alt="GitHub license"/>
+    </a>
 	<p>
         毕设作品，基于Android客户端的餐厅仓库管理系统的设计与实现，免费开源，目的是分享学习Android开发，最低支持Android8及以上。
     </p>
@@ -19,12 +22,12 @@
 7. 货物搜索功能
 8. 个人信息管理功能
 ## 应用截图
-![Carts](screenshots\carts.jpg)![Chat](screenshots\Chat.jpg)
-![Conversations](screenshots\Conversations.jpg)![GoodsDetails](screenshots\GoodsDetails.jpg)
-![Main](Screenshots\Main.jpg)![Orders](Screenshots\Orders.jpg)
-![Profile](Screenshots\Profile.jpg)![SignIn](Screenshots\SignIn.jpg)
-![SignUp](Screenshots\SignUp.jpg)![UpdateGoods](Screenshots\UpdateGoods.jpg)
-![UpdateProfile](Screenshots\UpdateProfile.jpg) ![Users](Screenshots\Users.jpg)
+![Carts](screenshots/Carts.jpg)![Chat](Screenshots/Chat.jpg)
+![Conversations](screenshots/Conversations.jpg)![GoodsDetails](screenshots/GoodsDetails.jpg)
+![Main](Screenshots/Main.jpg)![Orders](Screenshots/Orders.jpg)
+![Profile](Screenshots/Profile.jpg)![SignIn](Screenshots/SignIn.jpg)
+![SignUp](Screenshots/SignUp.jpg)![UpdateGoods](Screenshots/UpdateGoods.jpg)
+![UpdateProfile](Screenshots/UpdateProfile.jpg) ![Users](Screenshots/Users.jpg)
 
 ## 主要技术栈
 
