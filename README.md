@@ -2,10 +2,10 @@
     <h1>餐厅仓库管理系统</h1>
     <a href="https://img.shields.io/badge/Android-8.0%20or%20above-brightgreen" style="text-decoration:none" >
             <img src="https://img.shields.io/badge/Android-8.0%20or%20above-brightgreen" alt="Android version"/>
-    </a> 
-    <a href="https://github.com/Jonas-Yuno/Canteen/releases/tag/1.0.0" style="text-decoration:none" >
-            <img src="https://img.shields.io/badge/release-v1.0.0-blue" alt="GitHub all downloads"/>
     </a>
+    <a href="https://github.com/Jonas-Yuno/Canteen/releases/tag/1.0.0" style="text-decoration:none" >
+            <img src="https://img.shields.io/badge/release-v1.0.0-blue" 
+                 alt="GitHub all downloads" />
     <a href="https://github.com/Jonas-Yuno/Canteen/blob/master/LICENSE" style="text-decoration:none" >
             <img src="https://img.shields.io/badge/licence-GPL--3.0-orange" alt="GitHub license"/>
     </a>
