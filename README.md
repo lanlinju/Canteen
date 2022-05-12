@@ -19,12 +19,13 @@
 7. 货物搜索功能
 8. 个人信息管理功能
 ## 应用截图
-![Carts](Screenshots\Carts.jpg)![Chat](Screenshots\Chat.jpg)
-![Conversations](Screenshots\Conversations.jpg)![GoodsDetails](Screenshots\GoodsDetails.jpg)
+![Carts](screenshots\carts.jpg)![Chat](screenshots\Chat.jpg)
+![Conversations](screenshots\Conversations.jpg)![GoodsDetails](screenshots\GoodsDetails.jpg)
 ![Main](Screenshots\Main.jpg)![Orders](Screenshots\Orders.jpg)
 ![Profile](Screenshots\Profile.jpg)![SignIn](Screenshots\SignIn.jpg)
 ![SignUp](Screenshots\SignUp.jpg)![UpdateGoods](Screenshots\UpdateGoods.jpg)
 ![UpdateProfile](Screenshots\UpdateProfile.jpg) ![Users](Screenshots\Users.jpg)
+
 ## 主要技术栈
 
 - MVVM
