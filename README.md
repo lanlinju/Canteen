@@ -8,12 +8,10 @@
                  alt="GitHub all downloads" />
     <a href="https://github.com/Jonas-Yuno/Canteen/blob/master/LICENSE" style="text-decoration:none" >
             <img src="https://img.shields.io/badge/licence-GPL--3.0-orange" alt="GitHub license"/>
-    </a>
-	<p>
-        基于Android客户端的餐厅仓库管理系统的设计与实现，免费开源，目的是分享学习Android开发，最低支持Android8及以上。
-    </p>
+    </a> 
 </div>
-
+	
+基于Android客户端的餐厅仓库管理系统的设计与实现，免费开源，目的是分享学习Android开发，最低支持Android8及以上。
 另见  [后端代码](https://github.com/Jonas-Yuno/canteenService/)
 
 ## 基本功能实现
